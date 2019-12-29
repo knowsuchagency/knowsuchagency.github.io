@@ -34,23 +34,6 @@ def serve(c, draft=True):
 
 
 @task
-def deploy(c, message=None):
-    """Build blog and deploy to github pages."""
-
-    message = message or f"rebuilding site {dt.datetime.now().isoformat()}"
-
-    c.run("hugo")
-
-    with c.cd("public"):
-
-        c.run("git add .")
-
-        c.run(f'git commit -m "{message}"', warn=True)
-
-        c.run("git push origin master")
-
-
-@task
 def render_notebooks(c, reload_config=False):
     notebooks_path = Path("knowsuchagency_blog", "notebooks")
 
