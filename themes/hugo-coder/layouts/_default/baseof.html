@@ -31,7 +31,7 @@
       <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
     {{ else }}
       {{ $cssOpts := (dict "targetPath" "css/coder.css" ) }}
-      {{ $styles := resources.Get "scss/coder.scss" | resources.ExecuteAsTemplate "style.coder.css" . | toCSS $cssOpts | minify | fingerprint }}
+      {{ $styles := resources.Get "scss/coder.scss" | resources.ExecuteAsTemplate "style.coder.css" . | toCSS $cssOpts  | fingerprint }}
       <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
     {{ end }}
 
@@ -42,7 +42,7 @@
         <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
       {{ else }}
         {{ $cssOpts := (dict "targetPath" "css/coder-rtl.css" ) }}
-        {{ $styles := resources.Get "scss/coder-rtl.scss" | resources.ExecuteAsTemplate "style.coder-rtl.css" . | toCSS $cssOpts | minify | fingerprint }}
+        {{ $styles := resources.Get "scss/coder-rtl.scss" | resources.ExecuteAsTemplate "style.coder-rtl.css" . | toCSS $cssOpts  | fingerprint }}
         <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
       {{ end }}
     {{ end }}
@@ -54,7 +54,7 @@
         <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
       {{ else }}
         {{ $cssOpts := (dict "targetPath" "css/coder-dark.css" ) }}
-        {{ $styles := resources.Get "scss/coder-dark.scss" | resources.ExecuteAsTemplate "style.coder-dark.css" . | toCSS $cssOpts | minify | fingerprint }}
+        {{ $styles := resources.Get "scss/coder-dark.scss" | resources.ExecuteAsTemplate "style.coder-dark.css" . | toCSS $cssOpts  | fingerprint }}
         <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
       {{ end }}
     {{ end }}
@@ -66,7 +66,7 @@
     {{ range .Site.Params.custom_js }}
       <script src="{{ . | relURL }}"></script>
     {{ end }}
-    
+
     <link rel="icon" type="image/png" href="{{ .Site.Params.favicon_32 | default "/images/favicon-32x32.png" | absURL }}" sizes="32x32">
     <link rel="icon" type="image/png" href="{{ .Site.Params.favicon_16 | default "/images/favicon-16x16.png" | absURL }}" sizes="16x16">
 
