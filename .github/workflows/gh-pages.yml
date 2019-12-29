@@ -23,7 +23,7 @@ jobs:
           poetry install
 
       - name: Render Notebooks
-        run: inv render-notebooks
+        run: poetry run inv render-notebooks
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
