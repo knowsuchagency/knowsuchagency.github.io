@@ -11,6 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Install Package
+        run: |
+          pip install -U pip
+          pip install poetry
+          poetry install
+
+      - name: Render Notebooks
+        run: inv render-notebooks
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
