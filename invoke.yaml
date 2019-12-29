@@ -1,0 +1,36 @@
+notebooks:
+  monads-for-mortals:
+    draft: true
+    date: 2019-12-28
+    title: "Monads for Mortals"
+    description: "Functional Programming for the Rest of Us"
+    slug: "monads-for-mortals-in-python"
+    tags: ["python", "functional programming", "monads", "functors", "applicatives", "math"]
+  collatz-conjecture:
+    draft: false
+    date: 2017-10-30
+    title: "Collatz Conjecture"
+    description: "Collatz Conjecture in Python"
+    slug: "collatz-conjecture-in-python"
+    tags: ["python", "math", "programming"]
+  postmodern-error-handling:
+    draft: false
+    date: 2017-02-24
+    title: "Postmodern Error Handling in Python 3"
+    description: "An exploration of error handling in Python"
+    slug: "postmodern-error-handling"
+    tags: ["python", "error-handling", "programming"]
+  illegal-states:
+    draft: false
+    date: 2017-09-20
+    title: "Domain Modeling for Great Good"
+    description: "Making illegal states unrepresentable"
+    slug: "avoiding-illegal-state-through-domain-modeling"
+    tags: ["python", "architecture", "domain modeling", "programming"]
+  mbp-sentiment-analysis:
+    draft: false
+    date: 2016-10-28
+    title: "Sentiment Analysis of the new Macbook Pro"
+    description: "What does reddit think of the new macbook pro"
+    slug: "mbp-sentiment-analysis"
+    tags: ["python", "sentiment analysis", "reddit", "programming"]
