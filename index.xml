@@ -6,10 +6,29 @@
     <description>Recent content on knowsuchagency</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 28 Dec 2019 19:59:43 -0800</lastBuildDate>
     
 	<atom:link href="https://knowsuchagency.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Contact Me</title>
+      <link>https://knowsuchagency.github.io/contact/</link>
+      <pubDate>Sat, 28 Dec 2019 19:59:43 -0800</pubDate>
+      
+      <guid>https://knowsuchagency.github.io/contact/</guid>
+      <description>   </description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://knowsuchagency.github.io/about/</link>
+      <pubDate>Sat, 28 Dec 2019 19:43:58 -0800</pubDate>
+      
+      <guid>https://knowsuchagency.github.io/about/</guid>
+      <description>Stephan is a seasoned and accomplished data engineer.
+Previously trained as a Mandarin Chinese linguist at the Defense Language Institute while serving in the US Navy, he was later stationed at the National Security Agency in Hawaii, working as an intelligence analyst. During his tenure at the Agency from 2012 through 2016, he took it upon himself to teach himself how to program in order to automate the work he and other military analysts were doing.</description>
+    </item>
     
     <item>
       <title>Collatz Conjecture</title>
