@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>domain modeling on knowsuchagency</title>
+    <link>http://www.knowsuchagency.com/tags/domain-modeling/</link>
+    <description>Recent content in domain modeling on knowsuchagency</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 20 Sep 2017 00:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="http://www.knowsuchagency.com/tags/domain-modeling/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Domain Modeling for Great Good</title>
+      <link>http://www.knowsuchagency.com/posts/avoiding-illegal-state-through-domain-modeling/</link>
+      <pubDate>Wed, 20 Sep 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://www.knowsuchagency.com/posts/avoiding-illegal-state-through-domain-modeling/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
