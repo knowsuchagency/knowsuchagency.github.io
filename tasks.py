@@ -34,7 +34,7 @@ def serve(c, draft=True):
 
 
 @task
-def deploy(c, message=None, force=False):
+def deploy(c, message=None):
     """Build blog and deploy to github pages."""
 
     message = message or f"rebuilding site {dt.datetime.now().isoformat()}"
@@ -45,9 +45,9 @@ def deploy(c, message=None, force=False):
 
         c.run("git add .")
 
-        c.run(f'git commit -m "{message}"')
+        c.run(f'git commit -m "{message}"', warn=True)
 
-        c.run("git push origin master" + " --force" if force else "")
+        c.run("git push origin master")
 
 
 @task
