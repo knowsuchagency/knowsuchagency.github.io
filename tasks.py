@@ -16,7 +16,7 @@ from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 
 
-@task(aliases=['up'])
+@task(aliases=["up"])
 def serve(c, draft=True):
     """Run the hugo server alongside a bg thread that will re-render notebooks into md posts."""
 
@@ -34,7 +34,7 @@ def serve(c, draft=True):
 
 
 @task
-def deploy(c, message=None):
+def deploy(c, message=None, force=False):
     """Build blog and deploy to github pages."""
 
     message = message or f"rebuilding site {dt.datetime.now().isoformat()}"
@@ -47,7 +47,7 @@ def deploy(c, message=None):
 
         c.run(f'git commit -m "{message}"')
 
-        c.run("git push origin master")
+        c.run("git push origin master" + " --force" if force else "")
 
 
 @task

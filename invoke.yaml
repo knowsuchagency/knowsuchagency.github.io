@@ -1,3 +1,6 @@
+run:
+  echo: true
+
 notebooks:
   monads-for-mortals:
     draft: true
