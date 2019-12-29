@@ -16,7 +16,7 @@ from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 
 
-@task
+@task(aliases=['up'])
 def serve(c, draft=True):
     """Run the hugo server alongside a bg thread that will re-render notebooks into md posts."""
 
