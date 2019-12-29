@@ -18,7 +18,7 @@ from watchdog.observers import Observer
 
 @task(aliases=["up"])
 def serve(c, draft=True):
-    """Run the hugo server alongside a bg thread that will re-render notebooks into md posts."""
+    """Run the hugo server alongside a background thread that will re-render notebooks into markdown posts."""
 
     observer = Observer()
 
@@ -35,6 +35,7 @@ def serve(c, draft=True):
 
 @task
 def render_notebooks(c, reload_config=False):
+    """Render notebooks into respective markdown posts."""
     notebooks_path = Path("knowsuchagency_blog", "notebooks")
 
     notebooks = (n for n in notebooks_path.iterdir() if n.suffix == ".ipynb")
