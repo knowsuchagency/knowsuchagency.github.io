@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>knowsuchagency</title>
-    <link>http://knowsuchagency.github.io/</link>
+    <link>https://knowsuchagency.github.io/</link>
     <description>Recent content on knowsuchagency</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 30 Oct 2017 00:00:00 -0700</lastBuildDate>
     
-	<atom:link href="http://knowsuchagency.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://knowsuchagency.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Collatz Conjecture</title>
-      <link>http://knowsuchagency.github.io/posts/collatz-conjecture-in-python/</link>
+      <link>https://knowsuchagency.github.io/posts/collatz-conjecture-in-python/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/posts/collatz-conjecture-in-python/</guid>
+      <guid>https://knowsuchagency.github.io/posts/collatz-conjecture-in-python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Domain Modeling for Great Good</title>
-      <link>http://knowsuchagency.github.io/posts/avoiding-illegal-state-through-domain-modeling/</link>
+      <link>https://knowsuchagency.github.io/posts/avoiding-illegal-state-through-domain-modeling/</link>
       <pubDate>Wed, 20 Sep 2017 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/posts/avoiding-illegal-state-through-domain-modeling/</guid>
+      <guid>https://knowsuchagency.github.io/posts/avoiding-illegal-state-through-domain-modeling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Postmodern Error Handling in Python 3</title>
-      <link>http://knowsuchagency.github.io/posts/postmodern-error-handling/</link>
+      <link>https://knowsuchagency.github.io/posts/postmodern-error-handling/</link>
       <pubDate>Fri, 24 Feb 2017 00:00:00 -0800</pubDate>
       
-      <guid>http://knowsuchagency.github.io/posts/postmodern-error-handling/</guid>
+      <guid>https://knowsuchagency.github.io/posts/postmodern-error-handling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sentiment Analysis of the new Macbook Pro</title>
-      <link>http://knowsuchagency.github.io/posts/mbp-sentiment-analysis/</link>
+      <link>https://knowsuchagency.github.io/posts/mbp-sentiment-analysis/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/posts/mbp-sentiment-analysis/</guid>
+      <guid>https://knowsuchagency.github.io/posts/mbp-sentiment-analysis/</guid>
       <description></description>
     </item>
     

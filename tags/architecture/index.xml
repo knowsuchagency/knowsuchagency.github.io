@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>architecture on knowsuchagency</title>
-    <link>http://knowsuchagency.github.io/tags/architecture/</link>
+    <link>https://knowsuchagency.github.io/tags/architecture/</link>
     <description>Recent content in architecture on knowsuchagency</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 20 Sep 2017 00:00:00 -0700</lastBuildDate>
     
-	<atom:link href="http://knowsuchagency.github.io/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://knowsuchagency.github.io/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Domain Modeling for Great Good</title>
-      <link>http://knowsuchagency.github.io/posts/avoiding-illegal-state-through-domain-modeling/</link>
+      <link>https://knowsuchagency.github.io/posts/avoiding-illegal-state-through-domain-modeling/</link>
       <pubDate>Wed, 20 Sep 2017 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/posts/avoiding-illegal-state-through-domain-modeling/</guid>
+      <guid>https://knowsuchagency.github.io/posts/avoiding-illegal-state-through-domain-modeling/</guid>
       <description></description>
     </item>
     

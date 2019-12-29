@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on knowsuchagency</title>
-    <link>http://knowsuchagency.github.io/tags/</link>
+    <link>https://knowsuchagency.github.io/tags/</link>
     <description>Recent content in Tags on knowsuchagency</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 30 Oct 2017 00:00:00 -0700</lastBuildDate>
     
-	<atom:link href="http://knowsuchagency.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://knowsuchagency.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>math</title>
-      <link>http://knowsuchagency.github.io/tags/math/</link>
+      <link>https://knowsuchagency.github.io/tags/math/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/tags/math/</guid>
+      <guid>https://knowsuchagency.github.io/tags/math/</guid>
       <description></description>
     </item>
     
     <item>
       <title>programming</title>
-      <link>http://knowsuchagency.github.io/tags/programming/</link>
+      <link>https://knowsuchagency.github.io/tags/programming/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/tags/programming/</guid>
+      <guid>https://knowsuchagency.github.io/tags/programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
-      <link>http://knowsuchagency.github.io/tags/python/</link>
+      <link>https://knowsuchagency.github.io/tags/python/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/tags/python/</guid>
+      <guid>https://knowsuchagency.github.io/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>architecture</title>
-      <link>http://knowsuchagency.github.io/tags/architecture/</link>
+      <link>https://knowsuchagency.github.io/tags/architecture/</link>
       <pubDate>Wed, 20 Sep 2017 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/tags/architecture/</guid>
+      <guid>https://knowsuchagency.github.io/tags/architecture/</guid>
       <description></description>
     </item>
     
     <item>
       <title>domain modeling</title>
-      <link>http://knowsuchagency.github.io/tags/domain-modeling/</link>
+      <link>https://knowsuchagency.github.io/tags/domain-modeling/</link>
       <pubDate>Wed, 20 Sep 2017 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/tags/domain-modeling/</guid>
+      <guid>https://knowsuchagency.github.io/tags/domain-modeling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>error-handling</title>
-      <link>http://knowsuchagency.github.io/tags/error-handling/</link>
+      <link>https://knowsuchagency.github.io/tags/error-handling/</link>
       <pubDate>Fri, 24 Feb 2017 00:00:00 -0800</pubDate>
       
-      <guid>http://knowsuchagency.github.io/tags/error-handling/</guid>
+      <guid>https://knowsuchagency.github.io/tags/error-handling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>reddit</title>
-      <link>http://knowsuchagency.github.io/tags/reddit/</link>
+      <link>https://knowsuchagency.github.io/tags/reddit/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/tags/reddit/</guid>
+      <guid>https://knowsuchagency.github.io/tags/reddit/</guid>
       <description></description>
     </item>
     
     <item>
       <title>sentiment analysis</title>
-      <link>http://knowsuchagency.github.io/tags/sentiment-analysis/</link>
+      <link>https://knowsuchagency.github.io/tags/sentiment-analysis/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 -0700</pubDate>
       
-      <guid>http://knowsuchagency.github.io/tags/sentiment-analysis/</guid>
+      <guid>https://knowsuchagency.github.io/tags/sentiment-analysis/</guid>
       <description></description>
     </item>
     
