@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>reddit on knowsuchagency</title>
-    <link>http://www.knowsuchagency.com/tags/reddit/</link>
+    <link>https://www.knowsuchagency.com/tags/reddit/</link>
     <description>Recent content in reddit on knowsuchagency</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 28 Oct 2016 00:00:00 -0700</lastBuildDate>
     
-	<atom:link href="http://www.knowsuchagency.com/tags/reddit/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.knowsuchagency.com/tags/reddit/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Sentiment Analysis of the new Macbook Pro</title>
-      <link>http://www.knowsuchagency.com/posts/mbp-sentiment-analysis/</link>
+      <link>https://www.knowsuchagency.com/posts/mbp-sentiment-analysis/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 -0700</pubDate>
       
-      <guid>http://www.knowsuchagency.com/posts/mbp-sentiment-analysis/</guid>
+      <guid>https://www.knowsuchagency.com/posts/mbp-sentiment-analysis/</guid>
       <description></description>
     </item>
     
