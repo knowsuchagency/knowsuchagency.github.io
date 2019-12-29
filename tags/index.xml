@@ -1,1 +1,114 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on knowsuchagency</title><link>https://www.knowsuchagency.com/tags/</link><description>Recent content in Tags on knowsuchagency</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 28 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.knowsuchagency.com/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>functional programming</title><link>https://www.knowsuchagency.com/tags/functional-programming/</link><pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/functional-programming/</guid><description/></item><item><title>math</title><link>https://www.knowsuchagency.com/tags/math/</link><pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/math/</guid><description/></item><item><title>monoids</title><link>https://www.knowsuchagency.com/tags/monoids/</link><pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/monoids/</guid><description/></item><item><title>python</title><link>https://www.knowsuchagency.com/tags/python/</link><pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/python/</guid><description/></item><item><title>semigroups</title><link>https://www.knowsuchagency.com/tags/semigroups/</link><pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/semigroups/</guid><description/></item><item><title>programming</title><link>https://www.knowsuchagency.com/tags/programming/</link><pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/programming/</guid><description/></item><item><title>architecture</title><link>https://www.knowsuchagency.com/tags/architecture/</link><pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/architecture/</guid><description/></item><item><title>domain modeling</title><link>https://www.knowsuchagency.com/tags/domain-modeling/</link><pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/domain-modeling/</guid><description/></item><item><title>error-handling</title><link>https://www.knowsuchagency.com/tags/error-handling/</link><pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/error-handling/</guid><description/></item><item><title>reddit</title><link>https://www.knowsuchagency.com/tags/reddit/</link><pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/reddit/</guid><description/></item><item><title>sentiment analysis</title><link>https://www.knowsuchagency.com/tags/sentiment-analysis/</link><pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate><guid>https://www.knowsuchagency.com/tags/sentiment-analysis/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on knowsuchagency</title>
+    <link>https://www.knowsuchagency.com/tags/</link>
+    <description>Recent content in Tags on knowsuchagency</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 28 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.knowsuchagency.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>functional programming</title>
+      <link>https://www.knowsuchagency.com/tags/functional-programming/</link>
+      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/functional-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>https://www.knowsuchagency.com/tags/math/</link>
+      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>monoids</title>
+      <link>https://www.knowsuchagency.com/tags/monoids/</link>
+      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/monoids/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://www.knowsuchagency.com/tags/python/</link>
+      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>semigroups</title>
+      <link>https://www.knowsuchagency.com/tags/semigroups/</link>
+      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/semigroups/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://www.knowsuchagency.com/tags/programming/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>architecture</title>
+      <link>https://www.knowsuchagency.com/tags/architecture/</link>
+      <pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>domain modeling</title>
+      <link>https://www.knowsuchagency.com/tags/domain-modeling/</link>
+      <pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/domain-modeling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>error-handling</title>
+      <link>https://www.knowsuchagency.com/tags/error-handling/</link>
+      <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/error-handling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reddit</title>
+      <link>https://www.knowsuchagency.com/tags/reddit/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/reddit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sentiment analysis</title>
+      <link>https://www.knowsuchagency.com/tags/sentiment-analysis/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/sentiment-analysis/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
