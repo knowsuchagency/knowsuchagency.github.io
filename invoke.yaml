@@ -2,13 +2,14 @@ run:
   echo: true
 
 notebooks:
-  monads-for-mortals:
-    draft: true
+  a-moment-of-monoids:
+    draft: false
     date: 2019-12-28
-    title: "Monads for Mortals"
-    description: "Functional Programming for the Rest of Us"
-    slug: "monads-for-mortals-in-python"
-    tags: ["python", "functional programming", "monads", "functors", "applicatives", "math"]
+    title: "A Moment of Monoids"
+    description: "You already know monoids"
+    slug: "a-moment-of-monoids"
+    tags: ["python", "functional programming", "math", "semigroups", "monoids"]
+    series: ["functional programming"]
   collatz-conjecture:
     draft: false
     date: 2017-10-30
