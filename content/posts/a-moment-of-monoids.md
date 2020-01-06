@@ -50,7 +50,7 @@ multiply = operator.mul
 # almost as if we fold them one on top of another
 # until we're left with a single thing
 
-# that what we're doing when we call `reduce` in this example
+# that's what we're doing when we call `reduce` in this example
 
 total = functools.reduce(multiply, stuff)
 
