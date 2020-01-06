@@ -21,7 +21,7 @@ pygmentscodefencesguesssyntax = true
     keywords = "blog,developer"
     info = "Dark Wizard. Snake Whisperer."
     avatarurl = "images/avatar.jpg"
-    footercontent = "“How can you truly know what success is, if you’ve never experienced failure?”"
+    footercontent = "“Talk is cheap. Show me the code.”"
 
     dateformat = "January 2, 2006"
 
