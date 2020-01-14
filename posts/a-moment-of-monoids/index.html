@@ -147,8 +147,11 @@
 <h2 id="semigroups">Semigroups</h2>
 <p><a href="https://faculty.etsu.edu/gardnerr/5410/notes/I-1.pdf">A semigroup is a nonempty set G with an associative binary operation.</a></p>
 <p>Here's a secret. You probably already know what a semigroup is.</p>
-<p>You use them every time you <code>sum(a_collection_of_numbers)</code>.</p>
-<p>Let's look at some examples.</p>
+<p>You use them every time you add two numbers together or concatenate strings.</p>
+<p>Following the definition of a semigroup above, let <code>G</code> be the set of all numbers and <code>+</code> (addition) be our binary operation.</p>
+<p>Binary operation simply means a function that acts on two separate objects.</p>
+<p>Since we know addition over numbers to be associative i.e. <code>a + (b + c) = (a + b) + c</code>, this means the set of numbers under addition is a semigroup.</p>
+<p>Let's look at some concrete examples in python.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> functools
 <span style="color:#f92672">import</span> operator
 
@@ -212,6 +215,10 @@ cash_spent_per_customer <span style="color:#f92672">=</span> [row[<span style="c
 <p>We have a minor problem in that we have an empty value &ndash; john didn't spend
 any money in January.</p>
 <p>We solve this by replacing the empty value with an identity.</p>
+<p>By identity, we mean a value (a) that when combined with another value (b) will simply return the latter value (b).</p>
+<p>For example, for the set of numbers under addition, the identity is <code>0</code> because for any number x, <code>x + 0 = x</code>.</p>
+<p>The same is true for <code>1</code> for numbers under multiplication i.e. <code>x * 1 = x</code> for any number x.</p>
+<p>For the set of strings under the concatenation operation, the identity is simply an empty string.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cash_spent_per_customer <span style="color:#f92672">=</span> [
     float(s) <span style="color:#66d9ef">if</span> s <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> cash_spent_per_customer
 ]
