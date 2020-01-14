@@ -27,9 +27,15 @@ So let's do some Python.
 
 Here's a secret. You probably already know what a semigroup is.
 
-You use them every time you `sum(a_collection_of_numbers)`.
+You use them every time you add two numbers together or concatenate strings.
 
-Let's look at some examples.
+Following the definition of a semigroup above, let `G` be the set of all numbers and `+` (addition) be our binary operation.
+
+Binary operation simply means a function that acts on two separate objects.
+
+Since we know addition over numbers to be associative i.e. `a + (b + c) = (a + b) + c`, this means the set of numbers under addition is a semigroup.
+
+Let's look at some concrete examples in python.
 
 [1]: https://faculty.etsu.edu/gardnerr/5410/notes/I-1.pdf
 
@@ -113,6 +119,14 @@ We have a minor problem in that we have an empty value -- john didn't spend
 any money in January.
 
 We solve this by replacing the empty value with an identity.
+
+By identity, we mean a value (a) that when combined with another value (b) will simply return the latter value (b).
+
+For example, for the set of numbers under addition, the identity is `0` because for any number x, `x + 0 = x`.
+
+The same is true for `1` for numbers under multiplication i.e. `x * 1 = x` for any number x.
+
+For the set of strings under the concatenation operation, the identity is simply an empty string.
 
 
 ```python

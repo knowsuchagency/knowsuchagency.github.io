@@ -226,3 +226,7 @@ Temporary Items
 
 # hugo
 resources/_gen
+
+# vscode
+.vscode/
+tempCodeRunnerFile.python
