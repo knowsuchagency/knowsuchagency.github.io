@@ -116,7 +116,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              3 minutes read
+              4 minutes read
             </span>
           </div>
           
@@ -214,12 +214,21 @@ cash_spent_per_customer <span style="color:#f92672">=</span> [row[<span style="c
 </code></pre>
 <p>We have a minor problem in that we have an empty value &ndash; john didn't spend
 any money in January.</p>
-<p>We solve this by replacing the empty value with an identity.</p>
+<p>We solve this by replacing the empty value with an <strong>identity</strong>.</p>
 <p>By identity, we mean a value (a) that when combined with another value (b) will simply return the latter value (b).</p>
-<p>For example, for the set of numbers under addition, the identity is <code>0</code> because for any number x, <code>x + 0 = x</code>.</p>
-<p>The same is true for <code>1</code> for numbers under multiplication i.e. <code>x * 1 = x</code> for any number x.</p>
+<p>For example, for the set of numbers under addition, the identity is <code>0</code> because for any number <code>x</code>, <code>x + 0 = x</code>.</p>
+<p>The same is true for <code>1</code> for numbers under multiplication i.e. <code>x * 1 = x</code> for any number <code>x</code>.</p>
 <p>For the set of strings under the concatenation operation, the identity is simply an empty string.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cash_spent_per_customer <span style="color:#f92672">=</span> [
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3">string <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">hello, world</span><span style="color:#e6db74">&#34;</span>
+
+identity <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>
+
+string <span style="color:#f92672">+</span> identity <span style="color:#f92672">==</span> string
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># cash_spent_per_customer is currently a collection of strings</span>
+
+<span style="color:#75715e"># this comprehension attempts to convert each string to a floating point number UNLESS it is an empty string, in which case it evaluates to 0, the identity for numbers under addition</span>
+
+cash_spent_per_customer <span style="color:#f92672">=</span> [
     float(s) <span style="color:#66d9ef">if</span> s <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> cash_spent_per_customer
 ]
 
