@@ -10,6 +10,14 @@ notebooks:
     slug: "a-moment-of-monoids"
     tags: ["python", "functional programming", "math", "semigroups", "monoids"]
     series: ["functional programming"]
+  monads-in-python:
+    draft: false
+    date: 2020-01-17
+    title: "Monads for Mortals (in Python)"
+    description: "Implementing the Identity Monad in Python"
+    slug: "monads-for-mortals-in-python"
+    tags: ["python", "functional programming", "math", "monads", "functors", "applicatives", "property-based testing"]
+    series: ["functional programming"]
   collatz-conjecture:
     draft: false
     date: 2017-10-30
