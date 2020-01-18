@@ -442,13 +442,13 @@ if __name__ == "__main__":
 
 I had a lot of ~~head-scratching~~ fun implementing and testing the identity monad in Python.
 
-Although the implementation stops short of being useful, I stil thing it's informative as a reference.
+Although the implementation stops short of being useful, I still think it's informative as a reference.
 
 It might not be a ton more effort to extend the code above to do useful things.
 
-For example, to implement the `Maybe` or `Result` monad, perhaps overloading the `__rshift__` operator for monadic `bind` to provide some neat, untuitive facilities around error-handling.
+For example, one could inherit from the `Identity` monad to implement the `Maybe` or `Result`, perhaps overloading the `__rshift__` operator for monadic `bind` to provide some neat, untuitive facilities around error-handling.
 
-I'm probably not going to do it myself, though. The reason for this is because although I think it might be an interesting intellectual exercise, I think it's best to stick to a particular language's idioms with respect to things like control-flow and error-handling, especially when working with teams of people.
+I'm probably not going to do it myself, though. The reason for this is because although doing so would be an interesting intellectual exercise, I think it's best to stick to a particular language's idioms with respect to things like control-flow and error-handling.
 
 Something else I've come to opine as I worked on this implementation is that you can get pretty far with structures that are "weaker" than monads. For example, python's built-in `list` may not obey all the `Functor` laws, but that doesn't mean it isn't useful to be able to `map` over one.
 
