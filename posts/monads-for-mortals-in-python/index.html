@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Stephan Fitzpatrick">
+    <meta name="description" content="knowsuchagency">
+    <meta name="keywords" content="blog,developer">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Monads for Mortals (in Python)"/>
+<meta name="twitter:description" content="Implementing the Identity Monad in Python"/>
+
+    <meta property="og:title" content="Monads for Mortals (in Python)" />
+<meta property="og:description" content="Implementing the Identity Monad in Python" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.knowsuchagency.com/posts/monads-for-mortals-in-python/" />
+<meta property="article:published_time" content="2020-01-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-01-17T00:00:00+00:00" />
+
+
+
+    
+      <base href="https://www.knowsuchagency.com/posts/monads-for-mortals-in-python/">
+    
+    <title>
+  Monads for Mortals (in Python) · knowsuchagency
+</title>
+
+    
+      <link rel="canonical" href="https://www.knowsuchagency.com/posts/monads-for-mortals-in-python/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://www.knowsuchagency.com/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="https://www.knowsuchagency.com/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.62.2" />
+  </head>
+
+  
+  
+    
+  
+  <body class="colorscheme-dark">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://www.knowsuchagency.com/">
+      knowsuchagency
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.knowsuchagency.com/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.knowsuchagency.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.knowsuchagency.com/contact/">Contact</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Monads for Mortals (in Python)</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-01-17T00:00:00Z'>
+                January 17, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              8 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://www.knowsuchagency.com/tags/python/">python</a>
+      <span class="separator">•</span>
+    <a href="https://www.knowsuchagency.com/tags/functional-programming/">functional programming</a>
+      <span class="separator">•</span>
+    <a href="https://www.knowsuchagency.com/tags/math/">math</a>
+      <span class="separator">•</span>
+    <a href="https://www.knowsuchagency.com/tags/monads/">monads</a>
+      <span class="separator">•</span>
+    <a href="https://www.knowsuchagency.com/tags/functors/">functors</a>
+      <span class="separator">•</span>
+    <a href="https://www.knowsuchagency.com/tags/applicatives/">applicatives</a>
+      <span class="separator">•</span>
+    <a href="https://www.knowsuchagency.com/tags/property-based-testing/">property-based testing</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p><img src="https://www.knowsuchagency.com/monads.jpg" alt="monads"></p>
+<h2 id="whats-a-monad">What's a monad?</h2>
+<p>You'll get a lot of different answers on the definition of a monad, depending on who you ask.</p>
+<p>If you want the complete and correct answer, the best way to get it is probably <a href="https://homepages.inf.ed.ac.uk/wadler/topics/monads.html">from the source</a>.</p>
+<p>Here's my take on it, though&hellip;</p>
+<hr>
+<ul>
+<li>monads are a pattern for <em>composing</em> computations</li>
+<li>they act as containers for values and computations on those values.</li>
+<li>you can compose monads together, but those compositions have to follow certain rules.</li>
+</ul>
+<hr>
+<p>The fact that a correct implementation of a monad follows some special composition rules is what ultimately makes them useful.</p>
+<p>Languages that have verifiably correct implementations of monads as part of their standard library and provide syntactic sugar around their composition (i.e. Haskell, Scala) provide users of those languages a combination of expressive power and guarantees about correctness at compile-time, which is awesome.</p>
+<hr>
+<p>So, as I've mentioned in a previous post, monads have been implemented and written about a lot in other languages (like Scala and Haskell) more than in Python. Since Python is the language I primarily use, I wanted to implement my own monad in the language to get a better understanding of the topic.</p>
+<p>There are other projects that have sought to do the same such as <a href="https://github.com/dbrattli/OSlash">OSlash</a> and <a href="https://pypi.org/project/PyMonad/">PyMonad</a> but I think the best way to learn certain things is to do them oneself.</p>
+<p>Also, as far as I could tell, neither project (or any others I could find in the Python ecosystem) use property-based testing to guarantee that their monad implementations are correct; they seem to use hard-coded values in their test suites to test the monad laws. <em>Note: Please correct me if I'm wrong. I'm not criticizing the projects at all and it could be possible I'm missing something</em></p>
+<hr>
+<p>I wanted to see if I could use property-based testing through <a href="https://github.com/HypothesisWorks/hypothesis/tree/master/hypothesis-python">hypothesis</a> to programmatically verify that my monad implementation was correct.</p>
+<p>After a lot of trial-and-error, the following implementation of the identity monad is what I came up with.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">A basic implementation of the identity monad in python.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">We use the hypothesis library to test that our monad obeys</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">the monad, applicative, and functor laws.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">Credit to the following publications for definitions, knowledge, and inspiration:</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">* https://mmhaskell.com/monads/laws</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">* https://fsharpforfunandprofit.com/posts/elevated-world/</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">* https://homepages.inf.ed.ac.uk/wadler/topics/monads.html</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">import</span> inspect
+<span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+<span style="color:#f92672">from</span> dataclasses <span style="color:#f92672">import</span> dataclass
+<span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> partial, lru_cache
+<span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+
+<span style="color:#f92672">import</span> hypothesis.strategies <span style="color:#f92672">as</span> st
+<span style="color:#f92672">from</span> hypothesis <span style="color:#f92672">import</span> given, infer
+
+Scalar <span style="color:#f92672">=</span> Union[AnyStr, int, bool, float]
+
+Function <span style="color:#f92672">=</span> Callable[[Scalar], Scalar]
+
+ScalarOrFunction <span style="color:#f92672">=</span> Union[Scalar, Function]
+
+UnaryFunction <span style="color:#f92672">=</span> Callable[[ScalarOrFunction], ScalarOrFunction]
+
+BinaryFunction <span style="color:#f92672">=</span> Callable[
+    [ScalarOrFunction, ScalarOrFunction], ScalarOrFunction
+]
+
+UnaryOrBinaryFunction <span style="color:#f92672">=</span> Union[UnaryFunction, BinaryFunction]
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Functor</span>(ABC):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    A functor is a thing with a map method that obeys a set of rules</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    as to how its map method will behave.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#a6e22e">@abstractmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">map</span>(self, function: UnaryFunction) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Functor</span><span style="color:#e6db74">&#34;</span>:
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">NotImplementedError</span>
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Applicative</span>(Functor):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    An applicative is a functor with an apply method</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    that follows a set of rules.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    Applicatives also a unit method which will take a normal function or</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    value which it will </span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">lift</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> the value/function into a context/effect.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    We can think sort of think of unit as just a glorified __init__</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#a6e22e">@classmethod</span>
+    <span style="color:#a6e22e">@abstractmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">unit</span>(cls, value: Any) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Applicative</span><span style="color:#e6db74">&#34;</span>:
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">NotImplementedError</span>
+
+    <span style="color:#a6e22e">@abstractmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">apply</span>(self, lifted: <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Applicative</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Applicative</span><span style="color:#e6db74">&#34;</span>:
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">NotImplementedError</span>
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Monad</span>(Applicative):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    A monad can be thought of as a container that obeys a set of laws.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#a6e22e">@abstractmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bind</span>(self, function: Callable[[Scalar], <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Monad</span><span style="color:#e6db74">&#34;</span>]) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Monad</span><span style="color:#e6db74">&#34;</span>:
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">NotImplementedError</span>
+
+
+<span style="color:#a6e22e">@dataclass</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Identity</span>(Monad):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    The identity monad.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    The simplest of monads. It does nothing but wrap a value.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    value: Any
+
+    <span style="color:#a6e22e">@classmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">unit</span>(cls, value: Any) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Identity</span><span style="color:#e6db74">&#34;</span>:
+        <span style="color:#66d9ef">return</span> unit(value, cls)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">map</span>(self, function: UnaryFunction) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Identity</span><span style="color:#e6db74">&#34;</span>:
+        <span style="color:#66d9ef">return</span> map(self, function)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">apply</span>(self, lifted: <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Identity</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Identity</span><span style="color:#e6db74">&#34;</span>:
+        <span style="color:#66d9ef">return</span> apply(self, lifted)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bind</span>(self, function: Callable[[Scalar], <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Identity</span><span style="color:#e6db74">&#34;</span>]) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Identity</span><span style="color:#e6db74">&#34;</span>:
+        <span style="color:#66d9ef">return</span> bind(self, function)
+
+    <span style="color:#66d9ef">def</span> __eq__(self, other: Any):
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> isinstance(other, Identity):
+            <span style="color:#66d9ef">return</span> False
+        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>value <span style="color:#f92672">is</span> other<span style="color:#f92672">.</span>value:
+            <span style="color:#66d9ef">return</span> True
+        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>value <span style="color:#f92672">==</span> other<span style="color:#f92672">.</span>value:
+            <span style="color:#66d9ef">return</span> True
+        <span style="color:#66d9ef">elif</span> callable(self<span style="color:#f92672">.</span>value) <span style="color:#f92672">and</span> callable(other<span style="color:#f92672">.</span>value):
+            <span style="color:#75715e"># in the event we need to compare functions,</span>
+            <span style="color:#75715e"># we assume both functions accept 0 for simplicity&#39;s sake</span>
+            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>value(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">==</span> other<span style="color:#f92672">.</span>value(<span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">return</span> False
+
+
+<span style="color:#75715e"># since monads are applicatives which are in-turn functors, from here on I will be defining functions</span>
+<span style="color:#75715e"># solely in terms of monads because my goal is to make this easy to read and understand</span>
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">unit</span>(
+    value: Union[Scalar, UnaryFunction], M: Type[Monad] <span style="color:#f92672">=</span> Identity
+) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> Monad:
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    AKA: return, pure, yield, point</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    The purpose of `unit` is to take a value, and </span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">lift</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> it into a context.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">return</span> M(value) <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> isinstance(value, M) <span style="color:#66d9ef">else</span> value
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">map</span>(monad: Monad, function: UnaryFunction) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> Monad:
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    AKA: map, fmap, lift, Select</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    Given a monad and a function, return a new monad where the function is applied to the monad</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">s value.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    Note, it</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">s normally bad practice to define control flow using exceptions, but due to Python</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">s dynamic</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    nature, we aren</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">t guaranteed to have the necessary type information up-front in order to know whether</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    we need to simply apply the function to the lifted value, partially apply two functions, or compose them.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">return</span> monad<span style="color:#f92672">.</span>unit(function(monad<span style="color:#f92672">.</span>value))
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">TypeError</span>:
+        <span style="color:#66d9ef">return</span> monad<span style="color:#f92672">.</span>unit(partially_apply_or_compose(function, monad<span style="color:#f92672">.</span>value))
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">apply</span>(lifted_function: Monad, monad: Monad) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> Monad:
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    AKA: ap, &lt;*&gt;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    `apply` takes a monad and a function lifted in a monad</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    and applies the lifted function to the value in the</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    other monad</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">return</span> map(monad, lifted_function<span style="color:#f92672">.</span>value)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bind</span>(monad: Monad, function: Callable[[Scalar], Monad]) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> Monad:
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    AKA: flatMap, andThen, collect, SelectMany, &gt;&gt;=, =&lt;&lt;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    `bind` takes a monad and a function and applies that function to the monad.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    The function expects a normal value and returns a monad</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">return</span> map(monad, function)
+
+
+<span style="color:#75715e"># ---- tests ---- #</span>
+
+
+<span style="color:#a6e22e">@st.composite</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">monads</span>(draw):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">Build us some monads, would you?</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+    scalars <span style="color:#f92672">=</span> st<span style="color:#f92672">.</span>integers()
+
+    unary_functions <span style="color:#f92672">=</span> st<span style="color:#f92672">.</span>functions(like<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: x, returns<span style="color:#f92672">=</span>scalars)
+
+    value <span style="color:#f92672">=</span> draw(st<span style="color:#f92672">.</span>one_of(scalars, unary_functions))
+
+    value <span style="color:#f92672">=</span> value <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> callable(value) <span style="color:#66d9ef">else</span> memoize(value)
+
+    <span style="color:#66d9ef">return</span> Identity(value)
+
+
+<span style="color:#a6e22e">@given</span>(integer<span style="color:#f92672">=</span>st<span style="color:#f92672">.</span>integers(), f<span style="color:#f92672">=</span>infer, g<span style="color:#f92672">=</span>infer)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_functor_laws</span>(
+    integer: int, f: UnaryOrBinaryFunction, g: UnaryOrBinaryFunction
+):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    fmap id  ==  id</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    fmap (f . g)  ==  fmap f . fmap g</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#75715e"># we will continue to see this pattern where we use our memoization function</span>
+    <span style="color:#75715e"># to make the functions hypothesis generates behave predictably</span>
+
+    f, g <span style="color:#f92672">=</span> memoize(f), memoize(g)
+
+    monad <span style="color:#f92672">=</span> unit(integer)
+
+    <span style="color:#75715e"># I&#39;ll put the regular function invocation form prior to the method</span>
+    <span style="color:#75715e"># invocation form of each law from now on.</span>
+    <span style="color:#75715e"># I find that sometimes one is more readable than the other</span>
+
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    identity</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">        fmap id = id</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">assert</span> map(monad, identity) <span style="color:#f92672">==</span> monad
+
+    <span style="color:#66d9ef">assert</span> monad<span style="color:#f92672">.</span>map(identity) <span style="color:#f92672">==</span> monad
+
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    composition</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">        fmap (g . f) = fmap g . fmap f</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">assert</span> map(unit(integer), compose(f, g)) <span style="color:#f92672">==</span> map(map(unit(integer), g), f)
+
+    <span style="color:#66d9ef">assert</span> unit(integer)<span style="color:#f92672">.</span>map(compose(f, g)) <span style="color:#f92672">==</span> unit(integer)<span style="color:#f92672">.</span>map(g)<span style="color:#f92672">.</span>map(f)
+
+
+<span style="color:#a6e22e">@given</span>(monad<span style="color:#f92672">=</span>monads(), value<span style="color:#f92672">=</span>infer, f<span style="color:#f92672">=</span>infer, g<span style="color:#f92672">=</span>infer)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_monad_laws</span>(
+    monad: Monad,
+    value: Scalar,
+    f: UnaryOrBinaryFunction,
+    g: UnaryOrBinaryFunction,
+):
+    <span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    return a &gt;&gt;= f = f</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    m &gt;&gt;= return = m</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    (m &gt;&gt;= f) &gt;&gt;= g = m &gt;&gt;= (</span><span style="color:#e6db74">\</span><span style="color:#e6db74">x -&gt; f x &gt;&gt;= g)</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    f, g <span style="color:#f92672">=</span> _memoize_and_monadify(f), _memoize_and_monadify(g)
+
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    left identity</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">        return a &gt;&gt;= f = f</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">assert</span> bind(unit(value), f) <span style="color:#f92672">==</span> f(value)
+
+    <span style="color:#66d9ef">assert</span> unit(value)<span style="color:#f92672">.</span>bind(f) <span style="color:#f92672">==</span> f(value)
+
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    right identity</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">        m &gt;&gt;= return = m</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">assert</span> bind(monad, unit) <span style="color:#f92672">==</span> monad
+
+    <span style="color:#66d9ef">assert</span> monad<span style="color:#f92672">.</span>bind(unit) <span style="color:#f92672">==</span> monad
+
+    <span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    associativity</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">        (m &gt;&gt;= f) &gt;&gt;= g = m &gt;&gt;= (</span><span style="color:#e6db74">\</span><span style="color:#e6db74">x -&gt; f x &gt;&gt;= g)</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">assert</span> bind(bind(monad, f), g) <span style="color:#f92672">==</span> bind(monad, <span style="color:#66d9ef">lambda</span> x: bind(f(x), g))
+
+    <span style="color:#66d9ef">assert</span> monad<span style="color:#f92672">.</span>bind(f)<span style="color:#f92672">.</span>bind(g) <span style="color:#f92672">==</span> monad<span style="color:#f92672">.</span>bind(<span style="color:#66d9ef">lambda</span> x: bind(f(x), g))
+
+
+<span style="color:#a6e22e">@given</span>(
+    monad<span style="color:#f92672">=</span>monads(),
+    integer<span style="color:#f92672">=</span>st<span style="color:#f92672">.</span>integers(),
+    f<span style="color:#f92672">=</span>infer,
+    g<span style="color:#f92672">=</span>infer,
+    u<span style="color:#f92672">=</span>infer,
+    v<span style="color:#f92672">=</span>infer,
+    w<span style="color:#f92672">=</span>infer,
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_applicative_laws</span>(
+    monad: Monad,
+    integer: int,
+    f: UnaryOrBinaryFunction,
+    g: UnaryOrBinaryFunction,
+    u: UnaryOrBinaryFunction,
+    v: UnaryOrBinaryFunction,
+    w: UnaryOrBinaryFunction,
+):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    pure id &lt;*&gt; v = v</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    pure f &lt;*&gt; pure x = pure (f x)</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    u &lt;*&gt; pure y = pure ($ y) &lt;*&gt; u</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    oof</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+    f, g, u, v, w <span style="color:#f92672">=</span> (memoize(func) <span style="color:#66d9ef">for</span> func <span style="color:#f92672">in</span> (f, g, u, v, w))
+
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    identity</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">        pure id &lt;*&gt; v = v</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">assert</span> apply(unit(identity), monad) <span style="color:#f92672">==</span> monad
+
+    <span style="color:#66d9ef">assert</span> unit(identity)<span style="color:#f92672">.</span>apply(monad) <span style="color:#f92672">==</span> monad
+
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    homomorphism</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">        pure f &lt;*&gt; pure x = pure (f x)</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    x <span style="color:#f92672">=</span> integer
+
+    <span style="color:#66d9ef">assert</span> apply(unit(f), unit(x)) <span style="color:#f92672">==</span> unit(f(x))
+
+    <span style="color:#66d9ef">assert</span> unit(f)<span style="color:#f92672">.</span>apply(unit(x)) <span style="color:#f92672">==</span> unit(f(x))
+
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    interchange</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">        u &lt;*&gt; pure y = pure ($ y) &lt;*&gt; u</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    y <span style="color:#f92672">=</span> integer
+
+    <span style="color:#66d9ef">assert</span> apply(unit(f), unit(y)) <span style="color:#f92672">==</span> apply(unit(<span style="color:#66d9ef">lambda</span> g: g(y)), unit(f))
+
+    <span style="color:#66d9ef">assert</span> unit(f)<span style="color:#f92672">.</span>apply(unit(y)) <span style="color:#f92672">==</span> unit(<span style="color:#66d9ef">lambda</span> g: g(y))<span style="color:#f92672">.</span>apply(unit(f))
+
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    composition</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">        pure (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    u, v, w <span style="color:#f92672">=</span> unit(u), unit(v), unit(w)
+
+    <span style="color:#66d9ef">assert</span> apply(apply(apply(unit(compose), u), v), w) <span style="color:#f92672">==</span> apply(u, apply(v, w))
+
+    <span style="color:#66d9ef">assert</span> unit(compose)<span style="color:#f92672">.</span>apply(u)<span style="color:#f92672">.</span>apply(v)<span style="color:#f92672">.</span>apply(w) <span style="color:#f92672">==</span> u<span style="color:#f92672">.</span>apply(v<span style="color:#f92672">.</span>apply(w))
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_memoize_and_monadify</span>(function: UnaryFunction):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">Memoize function and wrap its return value in a monad.</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+    <span style="color:#a6e22e">@memoize</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x):
+
+        <span style="color:#66d9ef">return</span> unit(function(x))
+
+    <span style="color:#66d9ef">return</span> f
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">memoize</span>(func):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    Since functions generated by hypothesis aren</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">t deterministic, this decorator will allow us to make</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    them so.</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">return</span> lru_cache(maxsize<span style="color:#f92672">=</span>None)(func)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">identity</span>(x: Any) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> Any:
+    <span style="color:#66d9ef">return</span> x
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">partially_apply_or_compose</span>(
+    f: UnaryOrBinaryFunction, g: UnaryFunction
+) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> Callable:
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">If the arity of f is greater than one, return a function with g partially applied to f else compose f and g.</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> len(inspect<span style="color:#f92672">.</span>signature(f)<span style="color:#f92672">.</span>parameters) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>:
+        <span style="color:#75715e"># f is probably the composition function</span>
+        <span style="color:#66d9ef">return</span> partial(f, g)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">return</span> compose(f, g)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">compose</span>(f: Callable, g: Callable) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> Callable:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f_after_g</span>(x):
+        <span style="color:#66d9ef">return</span> f(g(x))
+
+    <span style="color:#66d9ef">return</span> f_after_g
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test</span>():
+    test_functor_laws()
+    test_monad_laws()
+    test_applicative_laws()
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">passed</span><span style="color:#e6db74">&#34;</span>)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">__main__</span><span style="color:#e6db74">&#34;</span>:
+    test()
+</code></pre></div><pre><code>passed
+</code></pre>
+<h1 id="conclusion">Conclusion</h1>
+<p>I had a lot of <del>head-scratching</del> fun implementing and testing the identity monad in Python.</p>
+<p>Although the implementation stops short of being useful, I stil thing it's informative as a reference.</p>
+<p>It might not be a ton more effort to extend the code above to do useful things.</p>
+<p>For example, to implement the <code>Maybe</code> or <code>Result</code> monad, perhaps overloading the <code>__rshift__</code> operator for monadic <code>bind</code> to provide some neat, untuitive facilities around error-handling.</p>
+<p>I'm probably not going to do it myself, though. The reason for this is because although I think it might be an interesting intellectual exercise, I think it's best to stick to a particular language's idioms with respect to things like control-flow and error-handling, especially when working with teams of people.</p>
+<p>Something else I've come to opine as I worked on this implementation is that you can get pretty far with structures that are &ldquo;weaker&rdquo; than monads. For example, python's built-in <code>list</code> may not obey all the <code>Functor</code> laws, but that doesn't mean it isn't useful to be able to <code>map</code> over one.</p>
+<p>Similarly, the Rust language may not have built-in monad implementations, but it already provides tremendous value simply by having algebraic datatypes (some with their own syntactic sugar) like <code>Option</code> and <code>Result</code>. They don't need to be complete monad implementations to be extremely useful.</p>
+      </div>
+
+      <footer>
+        
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3>See also in functional programming</h3>
+      <nav>
+        <ul>
+        
+        
+          
+        
+          
+            <li>
+              <a href="https://www.knowsuchagency.com/posts/a-moment-of-monoids/">A Moment of Monoids</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>“Talk is cheap. Show me the code.”</p>
+    
+     © 2020
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+       · 
+      [<a href="https://github.com/luizdepra/hugo-coder/tree/"></a>]
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

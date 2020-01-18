@@ -6,26 +6,71 @@
     <description>Recent content in Tags on knowsuchagency</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.knowsuchagency.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>applicatives</title>
+      <link>https://www.knowsuchagency.com/tags/applicatives/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/applicatives/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>functional programming</title>
       <link>https://www.knowsuchagency.com/tags/functional-programming/</link>
-      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.knowsuchagency.com/tags/functional-programming/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>functors</title>
+      <link>https://www.knowsuchagency.com/tags/functors/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/functors/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>math</title>
       <link>https://www.knowsuchagency.com/tags/math/</link>
-      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.knowsuchagency.com/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>monads</title>
+      <link>https://www.knowsuchagency.com/tags/monads/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/monads/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>property-based testing</title>
+      <link>https://www.knowsuchagency.com/tags/property-based-testing/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/property-based-testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://www.knowsuchagency.com/tags/python/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/tags/python/</guid>
       <description></description>
     </item>
     
@@ -35,15 +80,6 @@
       <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.knowsuchagency.com/tags/monoids/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://www.knowsuchagency.com/tags/python/</link>
-      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.knowsuchagency.com/tags/python/</guid>
       <description></description>
     </item>
     
