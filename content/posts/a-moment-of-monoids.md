@@ -118,18 +118,29 @@ print(cash_spent_per_customer)
 We have a minor problem in that we have an empty value -- john didn't spend
 any money in January.
 
-We solve this by replacing the empty value with an identity.
+We solve this by replacing the empty value with an **identity**.
 
 By identity, we mean a value (a) that when combined with another value (b) will simply return the latter value (b).
 
-For example, for the set of numbers under addition, the identity is `0` because for any number x, `x + 0 = x`.
+For example, for the set of numbers under addition, the identity is `0` because for any number `x`, `x + 0 = x`.
 
-The same is true for `1` for numbers under multiplication i.e. `x * 1 = x` for any number x.
+The same is true for `1` for numbers under multiplication i.e. `x * 1 = x` for any number `x`.
 
 For the set of strings under the concatenation operation, the identity is simply an empty string.
 
+```python3
+string = "hello, world"
+
+identity = ""
+
+string + identity == string
+```
 
 ```python
+# cash_spent_per_customer is currently a collection of strings
+
+# this comprehension attempts to convert each string to a floating point number UNLESS it is an empty string, in which case it evaluates to 0, the identity for numbers under addition
+
 cash_spent_per_customer = [
     float(s) if s else 0 for s in cash_spent_per_customer
 ]
