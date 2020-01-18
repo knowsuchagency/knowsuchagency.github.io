@@ -548,10 +548,10 @@ UnaryOrBinaryFunction <span style="color:#f92672">=</span> Union[UnaryFunction, 
 </code></pre>
 <h1 id="conclusion">Conclusion</h1>
 <p>I had a lot of <del>head-scratching</del> fun implementing and testing the identity monad in Python.</p>
-<p>Although the implementation stops short of being useful, I stil thing it's informative as a reference.</p>
+<p>Although the implementation stops short of being useful, I still think it's informative as a reference.</p>
 <p>It might not be a ton more effort to extend the code above to do useful things.</p>
-<p>For example, to implement the <code>Maybe</code> or <code>Result</code> monad, perhaps overloading the <code>__rshift__</code> operator for monadic <code>bind</code> to provide some neat, untuitive facilities around error-handling.</p>
-<p>I'm probably not going to do it myself, though. The reason for this is because although I think it might be an interesting intellectual exercise, I think it's best to stick to a particular language's idioms with respect to things like control-flow and error-handling, especially when working with teams of people.</p>
+<p>For example, one could inherit from the <code>Identity</code> monad to implement the <code>Maybe</code> or <code>Result</code>, perhaps overloading the <code>__rshift__</code> operator for monadic <code>bind</code> to provide some neat, untuitive facilities around error-handling.</p>
+<p>I'm probably not going to do it myself, though. The reason for this is because although doing so would be an interesting intellectual exercise, I think it's best to stick to a particular language's idioms with respect to things like control-flow and error-handling.</p>
 <p>Something else I've come to opine as I worked on this implementation is that you can get pretty far with structures that are &ldquo;weaker&rdquo; than monads. For example, python's built-in <code>list</code> may not obey all the <code>Functor</code> laws, but that doesn't mean it isn't useful to be able to <code>map</code> over one.</p>
 <p>Similarly, the Rust language may not have built-in monad implementations, but it already provides tremendous value simply by having algebraic datatypes (some with their own syntactic sugar) like <code>Option</code> and <code>Result</code>. They don't need to be complete monad implementations to be extremely useful.</p>
       </div>
