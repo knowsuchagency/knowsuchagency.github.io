@@ -59,7 +59,7 @@
     <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.71.0" />
   </head>
 
   
@@ -143,7 +143,7 @@
     <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
         <span style="color:#66d9ef">return</span> previous <span style="color:#f92672">+</span> [n]
     
-    next_number <span style="color:#f92672">=</span> n<span style="color:#f92672">/</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> n<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+    next_number <span style="color:#f92672">=</span> n<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> n<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
     <span style="color:#66d9ef">return</span> collatz(next_number, previous<span style="color:#f92672">+</span>[n])
 
 
@@ -168,8 +168,8 @@
         <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
             <span style="color:#66d9ef">return</span> previous <span style="color:#f92672">+</span> [n]
         <span style="color:#66d9ef">else</span>:
-            previous <span style="color:#f92672">+</span><span style="color:#f92672">=</span> [n]
-            n <span style="color:#f92672">=</span> n<span style="color:#f92672">/</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> n<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+            previous <span style="color:#f92672">+=</span> [n]
+            n <span style="color:#f92672">=</span> n<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> n<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
             <span style="color:#66d9ef">return</span> get(previous)
     <span style="color:#66d9ef">return</span> get([])
 
@@ -196,7 +196,7 @@ listify <span style="color:#f92672">=</span> partial(<span style="color:#66d9ef"
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collatz</span>(n):
     <span style="color:#66d9ef">while</span> n <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>:
         <span style="color:#66d9ef">yield</span> n
-        n <span style="color:#f92672">=</span> n<span style="color:#f92672">/</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> n<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        n <span style="color:#f92672">=</span> n<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> n<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
         
     <span style="color:#66d9ef">yield</span> n
     
@@ -225,7 +225,7 @@ listify <span style="color:#f92672">=</span> partial(<span style="color:#66d9ef"
     <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
         <span style="color:#66d9ef">return</span>
     
-    next_number <span style="color:#f92672">=</span> n<span style="color:#f92672">/</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> n<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+    next_number <span style="color:#f92672">=</span> n<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> n<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
     
     <span style="color:#66d9ef">yield</span> <span style="color:#f92672">from</span> collatz(next_number) 
         

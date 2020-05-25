@@ -59,7 +59,7 @@
     <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.71.0" />
   </head>
 
   
@@ -135,15 +135,15 @@
       <div>
         <h2 id="what-does-reddit-think-about-the-new-mbp">What does Reddit think about the new MBP?</h2>
 <h3 id="is-it-da-bomb-or-did-it-just-bomb">Is it da bomb, or did it just bomb?</h3>
-<p>My friends and I have been talking today about Apple's announcement of their new Macbook Pro line.
+<p>My friends and I have been talking today about Apple&rsquo;s announcement of their new Macbook Pro line.
 I personally own an Apple TV, Ipad mini, Macbook Pro, and an iPhone. I was definitely looking forward
 to see what Apple was going to come out with the new Macbook Pro line. My thoughts on the announcement aside,
-it seemed to me like the overwhelming majority of users on Reddit <a href="https://www.reddit.com/r/apple/comments/59plnp/lets_talk_about_those_prices/">didn't come away very impressed</a> with the announcements Apple made in regards to the new Macbook Pro. I thought this would be a good opportunity to play with Reddit's API and to try out some rudimentary sentiment analysis.</p>
+it seemed to me like the overwhelming majority of users on Reddit <a href="https://www.reddit.com/r/apple/comments/59plnp/lets_talk_about_those_prices/">didn&rsquo;t come away very impressed</a> with the announcements Apple made in regards to the new Macbook Pro. I thought this would be a good opportunity to play with Reddit&rsquo;s API and to try out some rudimentary sentiment analysis.</p>
 <h2 id="tech">Tech</h2>
-<p>To talk to Reddit, I'm using the aptly named, <a href="https://praw.readthedocs.io/en/stable/index.html"><strong>PRAW</strong></a> library. PRAW stands for the Python Reddit Api Wrapper. Nice.</p>
-<p>Now for the sentiment analysis, I'm going to use the <a href="https://textblob.readthedocs.io/en/dev/"><strong>TextBlob</strong></a> library. TextBlob is a library that provides an easy to use interface for a lot of common natural language processing tasks.</p>
+<p>To talk to Reddit, I&rsquo;m using the aptly named, <a href="https://praw.readthedocs.io/en/stable/index.html"><strong>PRAW</strong></a> library. PRAW stands for the Python Reddit Api Wrapper. Nice.</p>
+<p>Now for the sentiment analysis, I&rsquo;m going to use the <a href="https://textblob.readthedocs.io/en/dev/"><strong>TextBlob</strong></a> library. TextBlob is a library that provides an easy to use interface for a lot of common natural language processing tasks.</p>
 <h2 id="get-the-data">Get the data</h2>
-<p>To begin, we instantiate praw's Reddit class with an appropriate user agent. Be careful how you define your user agent. Doing so incorrectly can get you banned according to Reddit. Fortunately, writing a user agent isn't hard at all. You can find the official documentation on how to do so on the <a href="https://github.com/reddit/reddit/wiki/API">Reddit API wiki page</a>.</p>
+<p>To begin, we instantiate praw&rsquo;s Reddit class with an appropriate user agent. Be careful how you define your user agent. Doing so incorrectly can get you banned according to Reddit. Fortunately, writing a user agent isn&rsquo;t hard at all. You can find the official documentation on how to do so on the <a href="https://github.com/reddit/reddit/wiki/API">Reddit API wiki page</a>.</p>
 <p>As of this writing, the format should look something like this (taken from the aformentioned wiki):</p>
 <pre><code>&lt;platform&gt;:&lt;app ID&gt;:&lt;version string&gt; (by /u/&lt;reddit username&gt;)
 </code></pre>
@@ -154,7 +154,7 @@ it seemed to me like the overwhelming majority of users on Reddit <a href="https
 
 <span style="color:#75715e"># I saved my user agent string in a local file</span>
 <span style="color:#75715e"># since one should use their own</span>
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">./.user_agent</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">as</span> f:
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;./.user_agent&#39;</span>) <span style="color:#66d9ef">as</span> f:
     user_agent <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
 
 <span style="color:#75715e"># instantiate Reddit connection class</span>
@@ -163,7 +163,7 @@ r <span style="color:#f92672">=</span> praw<span style="color:#f92672">.</span>R
 <span style="color:#75715e"># let&#39;s get the current top 10 submissions</span>
 <span style="color:#75715e"># since praw interacts with reddit lazily, we wrap the method</span>
 <span style="color:#75715e"># call in a list</span>
-submissions <span style="color:#f92672">=</span> list(r<span style="color:#f92672">.</span>get_subreddit(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">apple</span><span style="color:#e6db74">&#39;</span>)<span style="color:#f92672">.</span>get_hot(limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>))
+submissions <span style="color:#f92672">=</span> list(r<span style="color:#f92672">.</span>get_subreddit(<span style="color:#e6db74">&#39;apple&#39;</span>)<span style="color:#f92672">.</span>get_hot(limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>))
 [str(s) <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> submissions]
 </code></pre></div><pre><code>['375 :: Apple Keynote, October 2016 | Post-Event Megathread',
  '44 :: Pre-order Shipping Megathread | Mac Lineup, 2016',
@@ -176,7 +176,7 @@ submissions <span style="color:#f92672">=</span> list(r<span style="color:#f9267
  '617 :: Gone is lit Apple logo on the back of Macbook Pro',
  '487 :: What are you thoughts on the new MacBook Pros? Being honest I am not i...']
 </code></pre>
-<p>Cool, so we have some data. From looking at the actual subreddit in a browser, we can see the two top submissions are official threads so we'll just skip over them.</p>
+<p>Cool, so we have some data. From looking at the actual subreddit in a browser, we can see the two top submissions are official threads so we&rsquo;ll just skip over them.</p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">submissions <span style="color:#f92672">=</span> submissions[<span style="color:#ae81ff">2</span>:]
 [str(s) <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> submissions]
@@ -190,39 +190,39 @@ submissions <span style="color:#f92672">=</span> list(r<span style="color:#f9267
  '487 :: What are you thoughts on the new MacBook Pros? Being honest I am not i...']
 </code></pre>
 <h3 id="submission-1">Submission 1</h3>
-<p>We'll start by looking at the comments in the first submission about Apple's new pricing. Can you guess what people think?!</p>
-<p>In praw, every Submission has a comments attribute which is iterable. This attribute isn't homogeneous. That is, some of the items will be Comment objects, and there may be a MoreComments class in there as well, so we'll need to handle that.</p>
+<p>We&rsquo;ll start by looking at the comments in the first submission about Apple&rsquo;s new pricing. Can you guess what people think?!</p>
+<p>In praw, every Submission has a comments attribute which is iterable. This attribute isn&rsquo;t homogeneous. That is, some of the items will be Comment objects, and there may be a MoreComments class in there as well, so we&rsquo;ll need to handle that.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># grab the first submission</span>
 submission <span style="color:#f92672">=</span> submissions[<span style="color:#ae81ff">0</span>]
 
 <span style="color:#75715e"># the actual text is in the body</span>
 <span style="color:#75715e"># attribute of a Comment</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_comments</span>(submission, n<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>):
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    Return a list of comments from a submission.</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    We can</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">t just use submission.comments, because some</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    of those comments may be MoreComments classes and those don</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">t</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    have bodies.</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    n is the number of comments we want to limit ourselves to</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    from the submission.</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Return a list of comments from a submission.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    We can&#39;t just use submission.comments, because some
+</span><span style="color:#e6db74">    of those comments may be MoreComments classes and those don&#39;t
+</span><span style="color:#e6db74">    have bodies.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    n is the number of comments we want to limit ourselves to
+</span><span style="color:#e6db74">    from the submission.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
     count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">barf_comments</span>(iterable<span style="color:#f92672">=</span>submission<span style="color:#f92672">.</span>comments):
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">        This generator barfs out comments.</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">        </span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">        Some comments seem not to have bodies, so we skip those.</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">        </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        This generator barfs out comments.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">        Some comments seem not to have bodies, so we skip those.
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
         nonlocal count
         <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> iterable:
             <span style="color:#66d9ef">if</span> count <span style="color:#f92672">==</span> n:
                 <span style="color:#66d9ef">break</span>
-            <span style="color:#66d9ef">elif</span> hasattr(c, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">body</span><span style="color:#e6db74">&#39;</span>):
+            <span style="color:#66d9ef">elif</span> hasattr(c, <span style="color:#e6db74">&#39;body&#39;</span>):
                 <span style="color:#66d9ef">yield</span> c<span style="color:#f92672">.</span>body
-                count <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-            <span style="color:#66d9ef">elif</span> hasattr(c, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">__iter__</span><span style="color:#e6db74">&#39;</span>):
+                count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">elif</span> hasattr(c, <span style="color:#e6db74">&#39;__iter__&#39;</span>):
                 <span style="color:#75715e"># handle MoreComments classes</span>
                 <span style="color:#66d9ef">yield</span> <span style="color:#f92672">from</span> barf_comments(c)
     <span style="color:#66d9ef">return</span> barf_comments()
@@ -252,7 +252,7 @@ list(comments)
 </code></pre>
 <h2 id="sentiment-analysis">Sentiment analysis!</h2>
 <p>So now we have the first twenty comments of the first submission.</p>
-<p>We'll combine them into one piece of text and determine the overall sentiment from them.</p>
+<p>We&rsquo;ll combine them into one piece of text and determine the overall sentiment from them.</p>
 <p>According to the TextBlob docs, this is how to use their sentiment analysis api and how to interpret it</p>
 <h3 id="the-sentiment-property-returns-a-namedtuple-of-the-form-sentimentpolarity-subjectivity-the-polarity-score-is-a-float-within-the-range--10-10-the-subjectivity-is-a-float-within-the-range-00-10-where-00-is-very-objective-and-10-is-very-subjective">The sentiment property returns a namedtuple of the form Sentiment(polarity, subjectivity). The polarity score is a float within the range [-1.0, 1.0]. The subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective.</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
@@ -263,18 +263,18 @@ Sentiment(polarity=0.39166666666666666, subjectivity=0.4357142857142857)
 0.39166666666666666
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> textblob <span style="color:#f92672">import</span> TextBlob
 
-comment_blob <span style="color:#f92672">=</span> TextBlob(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join(comments))
+comment_blob <span style="color:#f92672">=</span> TextBlob(<span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(comments))
 </code></pre></div><pre><code>Sentiment(polarity=-0.06283927712499143, subjectivity=0.5978612657184086)
 </code></pre>
-<p>Huh, things aren't looking good so far. Well, let's look at more data.</p>
+<p>Huh, things aren&rsquo;t looking good so far. Well, let&rsquo;s look at more data.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">more_comments <span style="color:#f92672">=</span> []
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> submission <span style="color:#f92672">in</span> submissions:
     more_comments<span style="color:#f92672">.</span>extend(get_comments(submission, <span style="color:#ae81ff">200</span>))
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">len(more_comments)
 </code></pre></div><pre><code>404
 </code></pre>
-<p>I figure there are many more than 404 comments for those submissions. I suspect we only get that many because praw <a href="https://praw.readthedocs.io/en/stable/pages/faq.html">tries to do the right thing</a> and follow Reddit's guidelines for the amount of requests one can make within a given time limit. We're not going to worry about that now. 404 comments is good enough since we're only tinkering :)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bigger_blob <span style="color:#f92672">=</span> TextBlob(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join(more_comments))
+<p>I figure there are many more than 404 comments for those submissions. I suspect we only get that many because praw <a href="https://praw.readthedocs.io/en/stable/pages/faq.html">tries to do the right thing</a> and follow Reddit&rsquo;s guidelines for the amount of requests one can make within a given time limit. We&rsquo;re not going to worry about that now. 404 comments is good enough since we&rsquo;re only tinkering :)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bigger_blob <span style="color:#f92672">=</span> TextBlob(<span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(more_comments))
 
 <span style="color:#75715e"># The first time I ran this method, it failed</span>
 <span style="color:#75715e"># because I hadn&#39;t read TextBlob&#39;s docs closely</span>
@@ -284,7 +284,7 @@ comment_blob <span style="color:#f92672">=</span> TextBlob(<span style="color:#e
 <span style="color:#66d9ef">print</span>(len(bigger_blob<span style="color:#f92672">.</span>words))
 </code></pre></div><pre><code>17046
 </code></pre>
-<p>Let's see what some of the most common words are</p>
+<p>Let&rsquo;s see what some of the most common words are</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> Counter
 
 counter <span style="color:#f92672">=</span> Counter(bigger_blob<span style="color:#f92672">.</span>words)
@@ -332,13 +332,13 @@ counter<span style="color:#f92672">.</span>most_common()[<span style="color:#ae8
  ('down', 25),
  ('Bar', 25)]
 </code></pre>
-<h3 id="finally-lets-see-what-the-over-all-sentiment-analysis-is">Finally, let's see what the over all sentiment analysis is</h3>
+<h3 id="finally-lets-see-what-the-over-all-sentiment-analysis-is">Finally, let&rsquo;s see what the over all sentiment analysis is</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bigger_blob<span style="color:#f92672">.</span>sentiment
 </code></pre></div><pre><code>Sentiment(polarity=0.07565960941292733, subjectivity=0.52062214346886)
 </code></pre>
 <p>We see that the overall sentiment is much more positive when we include a larger body of comments.</p>
 <h2 id="in-conclusion">In conclusion</h2>
-<p>We've hopefully learned a little more about communicating with Reddit using Python and doing some simple sentiment analysis on the content there. This wasn't meant to be a very scientific excercise, but I thought it was a fun way to play around with <a href="https://praw.readthedocs.io/en/stable/index.html">PRAW</a> and <a href="https://textblob.readthedocs.io/en/dev/index.html">TextBlob</a>. Both libraries are really powerful and simple to use and I can definitely see myself taking advantage of them a lot more in the future.</p>
+<p>We&rsquo;ve hopefully learned a little more about communicating with Reddit using Python and doing some simple sentiment analysis on the content there. This wasn&rsquo;t meant to be a very scientific excercise, but I thought it was a fun way to play around with <a href="https://praw.readthedocs.io/en/stable/index.html">PRAW</a> and <a href="https://textblob.readthedocs.io/en/dev/index.html">TextBlob</a>. Both libraries are really powerful and simple to use and I can definitely see myself taking advantage of them a lot more in the future.</p>
       </div>
 
       <footer>
