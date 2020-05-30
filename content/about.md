@@ -14,5 +14,5 @@ There he worked alongside PhD's (one whom now works at Google X) and other exper
 
 In the years since his time at the NSA, Stephan has continued to surround himself by the smartest people he can find, helping them tackle their principal business and technical problems at scale. 
 
-He now owns his own company, KNOWSUCHAGENCY INC, assisting enterprise clients overcome their most difficult data engineering challenges.
+He now owns his own company, KNOWSUCHAGENCY CORP, assisting enterprise clients overcome their most difficult data engineering challenges.
 
