@@ -1,6 +1,8 @@
 baseurl = "https://www.knowsuchagency.com"
 title = "knowsuchagency"
 
+googleAnalytics = "UA-169338852-1"
+
 theme = "hugo-coder"
 
 languagecode = "en"
