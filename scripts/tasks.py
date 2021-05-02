@@ -3,29 +3,23 @@ import datetime as dt
 import functools
 import logging
 import re
-from pathlib import Path
 import subprocess as sp
+import sys
+from pathlib import Path
 
 import nbformat
 import toml
-
-import sys
-
-# from invoke import task
 from nbconvert import MarkdownExporter
 from nbconvert.preprocessors import Preprocessor
-from ruamel.yaml import YAML
 from traitlets.config import Config
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
-
 
 config = toml.load("config.toml")
 
 notebooks_path = Path("notebooks")
 
 
-# @task(aliases=["up"])
 def serve(draft=True):
     """Run the hugo server alongside a background thread that will re-render notebooks into markdown posts."""
 
@@ -44,7 +38,6 @@ def serve(draft=True):
     sp.run("hugo serve" + (" -D" if draft else ""), shell=True)
 
 
-# @task
 def render_notebooks(reload_config=False):
     """Render notebooks into respective markdown posts."""
     
