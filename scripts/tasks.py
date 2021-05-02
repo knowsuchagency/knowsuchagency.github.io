@@ -19,7 +19,8 @@ from traitlets.config import Config
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 
-config = YAML().load(Path("config.yaml"))
+
+config = toml.load("config.toml")
 
 notebooks_path = Path("notebooks")
 
