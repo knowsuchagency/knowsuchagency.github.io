@@ -11,19 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Setup Python
-        uses: actions/setup-python@v1
+      - uses: pdm-project/setup-pdm@v1.1
+        name: Setup PDM
         with:
-          python-version: 3.7
-
-      - name: Install Python Dependencies
-        run: |
-          pip install -U pip
-          pip install poetry
-          poetry install
+          python-version: 3.8
 
       - name: Render Notebooks
-        run: poetry run inv render-notebooks
+        run: pdm run render-notebooks
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
