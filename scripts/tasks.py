@@ -21,6 +21,8 @@ from watchdog.observers import Observer
 
 config = YAML().load(Path("config.yaml"))
 
+notebooks_path = Path("notebooks")
+
 
 # @task(aliases=["up"])
 def serve(draft=True):
@@ -30,7 +32,7 @@ def serve(draft=True):
 
         observer = Observer()
 
-        observer.schedule(NotebookHandler(), "knowsuchagency_blog/notebooks")
+        observer.schedule(NotebookHandler(), str(notebooks_path))
 
         observer.schedule(ConfigHandler(), ".")
 
@@ -44,7 +46,7 @@ def serve(draft=True):
 # @task
 def render_notebooks(reload_config=False):
     """Render notebooks into respective markdown posts."""
-    notebooks_path = Path("knowsuchagency_blog", "notebooks")
+    
 
     notebooks = (n for n in notebooks_path.iterdir() if n.suffix == ".ipynb")
 
