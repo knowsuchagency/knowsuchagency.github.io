@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="author" content="Stephan Fitzpatrick">
+    <meta name="author" content="knowsuchagency">
     <meta name="description" content="knowsuchagency">
-    <meta name="keywords" content="blog,developer">
+    <meta name="keywords" content="blog,python,consulting,training,business,cloud">
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Postmodern Error Handling in Python 3"/>
@@ -16,9 +16,10 @@
     <meta property="og:title" content="Postmodern Error Handling in Python 3" />
 <meta property="og:description" content="An exploration of error handling in Python" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.knowsuchagency.com/posts/postmodern-error-handling/" />
-<meta property="article:published_time" content="2017-02-24T00:00:00+00:00" />
-<meta property="article:modified_time" content="2017-02-24T00:00:00+00:00" />
+<meta property="og:url" content="https://www.knowsuchagency.com/posts/postmodern-error-handling/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-02-24T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2017-02-24T00:00:00&#43;00:00" />
+
 
 
     
@@ -45,12 +46,6 @@
     
 
     
-      
-        
-        
-        <link rel="stylesheet" href="https://www.knowsuchagency.com/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU=" crossorigin="anonymous" media="screen" />
-      
-    
 
     
 
@@ -59,14 +54,12 @@
     <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.72.0" />
+    <meta name="generator" content="Hugo 0.83.0" />
   </head>
 
   
   
-    
-  
-  <body class="colorscheme-dark">
+  <body class="colorscheme-light">
     <main class="wrapper">
       <nav class="navigation">
   <section class="container">
@@ -79,15 +72,15 @@
       
         
           <li class="navigation-item">
-            <a class="navigation-link" href="https://www.knowsuchagency.com/about/">About</a>
-          </li>
-        
-          <li class="navigation-item">
             <a class="navigation-link" href="https://www.knowsuchagency.com/posts/">Blog</a>
           </li>
         
           <li class="navigation-item">
             <a class="navigation-link" href="https://www.knowsuchagency.com/contact/">Contact</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.knowsuchagency.com/book/">Book</a>
           </li>
         
       
@@ -162,21 +155,21 @@ what do you call a union-type with three states?</p>
 <li><strong>B</strong>: Get slapped 5 times at any random time from now to eternity</li>
 </ul>
 <p>Those are the only 2 possibilities; you don&rsquo;t get any other choices. We could model this idea using an Enum.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> enum <span style="color:#f92672">import</span> Enum
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">enum</span> <span style="color:#007020;font-weight:bold">import</span> Enum
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SlapBet</span>(Enum):
-    TEN_SLAPS <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e"># get slapped ten times right now</span>
-    FIVE_SLAPS <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e"># fear slaps possibly for eternity</span>
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">SlapBet</span>(Enum):
+    TEN_SLAPS <span style="color:#666">=</span> <span style="color:#40a070">1</span> <span style="color:#60a0b0;font-style:italic"># get slapped ten times right now</span>
+    FIVE_SLAPS <span style="color:#666">=</span> <span style="color:#40a070">2</span> <span style="color:#60a0b0;font-style:italic"># fear slaps possibly for eternity</span>
     
-smart_choice <span style="color:#f92672">=</span> SlapBet<span style="color:#f92672">.</span>TEN_SLAPS
+smart_choice <span style="color:#666">=</span> SlapBet<span style="color:#666">.</span>TEN_SLAPS
 
-stupid_choice <span style="color:#f92672">=</span> SlapBet<span style="color:#f92672">.</span>FIVE_SLAPS
+stupid_choice <span style="color:#666">=</span> SlapBet<span style="color:#666">.</span>FIVE_SLAPS
 
-<span style="color:#66d9ef">print</span>(
-    smart_choice, <span style="color:#75715e"># notice the pretty repr</span>
-    smart_choice <span style="color:#f92672">==</span> SlapBet<span style="color:#f92672">.</span>TEN_SLAPS,
-    smart_choice <span style="color:#f92672">==</span> stupid_choice,
-    sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>
+<span style="color:#007020;font-weight:bold">print</span>(
+    smart_choice, <span style="color:#60a0b0;font-style:italic"># notice the pretty repr</span>
+    smart_choice <span style="color:#666">==</span> SlapBet<span style="color:#666">.</span>TEN_SLAPS,
+    smart_choice <span style="color:#666">==</span> stupid_choice,
+    sep<span style="color:#666">=</span><span style="color:#4070a0">&#39;</span><span style="color:#4070a0;font-weight:bold">\n</span><span style="color:#4070a0">&#39;</span>
 )
 </code></pre></div><pre><code>SlapBet.TEN_SLAPS
 True
@@ -185,80 +178,80 @@ False
 <p>So, why would we do this? Why go through the trouble of using an Enum when we could functionally do the same thing with something like integers? Well, the first reason, and the most important one, in my opinion, is readability.</p>
 <p>The second reason is that Enum instances can hold values we may want to use.</p>
 <p>Let&rsquo;s say you have a function that has an optional parameter.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">connection</span>(person_1, person_2, relationship<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;knows&#39;</span>):
-    <span style="color:#e6db74">&#34;&#34;&#34;Return a string that represents the relationship between two people.&#34;&#34;&#34;</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">connection</span>(person_1, person_2, relationship<span style="color:#666">=</span><span style="color:#4070a0">&#39;knows&#39;</span>):
+    <span style="color:#4070a0">&#34;&#34;&#34;Return a string that represents the relationship between two people.&#34;&#34;&#34;</span>
     
-    <span style="color:#75715e"># this sexy f&#34;&#34; string format is part of the new Python 3.6</span>
-    <span style="color:#75715e"># hotness. An article for another day.</span>
+    <span style="color:#60a0b0;font-style:italic"># this sexy f&#34;&#34; string format is part of the new Python 3.6</span>
+    <span style="color:#60a0b0;font-style:italic"># hotness. An article for another day.</span>
     
-    <span style="color:#66d9ef">return</span> f<span style="color:#e6db74">&#34;{person_1} {relationship} {person_2}&#34;</span>
+    <span style="color:#007020;font-weight:bold">return</span> f<span style="color:#4070a0">&#34;{person_1} {relationship} {person_2}&#34;</span>
 
-connection(<span style="color:#e6db74">&#34;Ron&#34;</span>, <span style="color:#e6db74">&#34;Harry&#34;</span>, relationship<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;is best friends with&#34;</span>)
+connection(<span style="color:#4070a0">&#34;Ron&#34;</span>, <span style="color:#4070a0">&#34;Harry&#34;</span>, relationship<span style="color:#666">=</span><span style="color:#4070a0">&#34;is best friends with&#34;</span>)
 </code></pre></div><pre><code>'Ron is best friends with Harry'
 </code></pre>
 <p>Now let&rsquo;s say we want to restrain the possible relationships that people can have.</p>
 <p>Maybe we want to do this to prevent errors or to simply prevent weirdness like the following.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">connection(<span style="color:#e6db74">&#34;Ron&#34;</span>, <span style="color:#e6db74">&#34;Harry&#34;</span>, relationship<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;is dating Hermoine but secretly wants&#34;</span>)
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">connection(<span style="color:#4070a0">&#34;Ron&#34;</span>, <span style="color:#4070a0">&#34;Harry&#34;</span>, relationship<span style="color:#666">=</span><span style="color:#4070a0">&#34;is dating Hermoine but secretly wants&#34;</span>)
 </code></pre></div><pre><code>'Ron is dating Hermoine but secretly wants Harry'
 </code></pre>
 <h3 id="enums-to-the-rescue">Enums to the rescue!</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> enum <span style="color:#f92672">import</span> Enum
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">enum</span> <span style="color:#007020;font-weight:bold">import</span> Enum
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Relationship</span>(Enum):
-    knows <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;knows&#39;</span>
-    likes <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;likes&#39;</span>
-    loves <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;loves&#39;</span>
-    detests <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;detests&#39;</span>
-    bff <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;is best friends with&#34;</span>
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">Relationship</span>(Enum):
+    knows <span style="color:#666">=</span> <span style="color:#4070a0">&#39;knows&#39;</span>
+    likes <span style="color:#666">=</span> <span style="color:#4070a0">&#39;likes&#39;</span>
+    loves <span style="color:#666">=</span> <span style="color:#4070a0">&#39;loves&#39;</span>
+    detests <span style="color:#666">=</span> <span style="color:#4070a0">&#39;detests&#39;</span>
+    bff <span style="color:#666">=</span> <span style="color:#4070a0">&#34;is best friends with&#34;</span>
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">connection</span>(person_1, person_2, relationship<span style="color:#f92672">=</span>Relationship<span style="color:#f92672">.</span>likes):
-    <span style="color:#e6db74">&#34;&#34;&#34;Return a string that represents the relationship between two people.&#34;&#34;&#34;</span>
+<span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">connection</span>(person_1, person_2, relationship<span style="color:#666">=</span>Relationship<span style="color:#666">.</span>likes):
+    <span style="color:#4070a0">&#34;&#34;&#34;Return a string that represents the relationship between two people.&#34;&#34;&#34;</span>
     
-    <span style="color:#75715e"># notice we use the .value of the Relationship instance to get the string</span>
+    <span style="color:#60a0b0;font-style:italic"># notice we use the .value of the Relationship instance to get the string</span>
     
-    <span style="color:#66d9ef">return</span> f<span style="color:#e6db74">&#34;{person_1} {relationship.value} {person_2}&#34;</span>
+    <span style="color:#007020;font-weight:bold">return</span> f<span style="color:#4070a0">&#34;{person_1} {relationship.value} {person_2}&#34;</span>
 
-connection(<span style="color:#e6db74">&#34;Ron&#34;</span>, <span style="color:#e6db74">&#34;Harry&#34;</span>, relationship<span style="color:#f92672">=</span>Relationship<span style="color:#f92672">.</span>bff)
+connection(<span style="color:#4070a0">&#34;Ron&#34;</span>, <span style="color:#4070a0">&#34;Harry&#34;</span>, relationship<span style="color:#666">=</span>Relationship<span style="color:#666">.</span>bff)
 </code></pre></div><pre><code>'Ron is best friends with Harry'
 </code></pre>
 <h2 id="interlude">Interlude</h2>
 <p>Now, before tackle the original question that started us on this journey, let&rsquo;s quickly talk about another new and incredibly useful and important feature since Python 3.5 that has been vastly improved in Python 3.6 - type annotations.</p>
 <p>In our previous example, there would be nothing to prevent someone from doing the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">evil <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span>: <span style="color:#e6db74">&#39;power&#39;</span>
-evil<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;corrupts&#39;</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">evil <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">lambda</span>: <span style="color:#4070a0">&#39;power&#39;</span>
+evil<span style="color:#666">.</span>value <span style="color:#666">=</span> <span style="color:#4070a0">&#39;corrupts&#39;</span>
 
-connection(<span style="color:#e6db74">&#34;Ron&#34;</span>, <span style="color:#e6db74">&#34;Harry&#34;</span>, relationship<span style="color:#f92672">=</span>evil)
+connection(<span style="color:#4070a0">&#34;Ron&#34;</span>, <span style="color:#4070a0">&#34;Harry&#34;</span>, relationship<span style="color:#666">=</span>evil)
 </code></pre></div><pre><code>'Ron corrupts Harry'
 </code></pre>
 <p>That&rsquo;s obviously not how we intended our function to be used, but part of what makes Python so powerful, its dynamic nature, is what allows such nefarious behavior. If only there were a way to save ourselves and people who use our code from making such mistakes&hellip;</p>
 <h3 id="behold">Behold!</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> enum <span style="color:#f92672">import</span> Enum
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">enum</span> <span style="color:#007020;font-weight:bold">import</span> Enum
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Relationship</span>(Enum):
-    knows: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;knows&#39;</span>
-    likes: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;likes&#39;</span>
-    loves: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;loves&#39;</span>
-    detests: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;detests&#39;</span>
-    bff: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;is best friends with&#34;</span>
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">Relationship</span>(Enum):
+    knows: <span style="color:#007020">str</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#39;knows&#39;</span>
+    likes: <span style="color:#007020">str</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#39;likes&#39;</span>
+    loves: <span style="color:#007020">str</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#39;loves&#39;</span>
+    detests: <span style="color:#007020">str</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#39;detests&#39;</span>
+    bff: <span style="color:#007020">str</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#34;is best friends with&#34;</span>
     
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">connection</span>(person_1: str,
-               person_2: str,
-               relationship: Relationship<span style="color:#f92672">=</span>Relationship<span style="color:#f92672">.</span>knows) <span style="color:#f92672">-&gt;</span> str:
-    <span style="color:#e6db74">&#34;&#34;&#34;Return a string that represents the relationship between two people.&#34;&#34;&#34;</span>
+<span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">connection</span>(person_1: <span style="color:#007020">str</span>,
+               person_2: <span style="color:#007020">str</span>,
+               relationship: Relationship<span style="color:#666">=</span>Relationship<span style="color:#666">.</span>knows) <span style="color:#666">-&gt;</span> <span style="color:#007020">str</span>:
+    <span style="color:#4070a0">&#34;&#34;&#34;Return a string that represents the relationship between two people.&#34;&#34;&#34;</span>
     
-    <span style="color:#75715e"># notice we use the .value of the Relationship instance to get the string</span>
+    <span style="color:#60a0b0;font-style:italic"># notice we use the .value of the Relationship instance to get the string</span>
     
-    <span style="color:#66d9ef">return</span> f<span style="color:#e6db74">&#34;{person_1} {relationship.value} {person_2}&#34;</span>
+    <span style="color:#007020;font-weight:bold">return</span> f<span style="color:#4070a0">&#34;{person_1} {relationship.value} {person_2}&#34;</span>
 
-connection(<span style="color:#e6db74">&#34;Ron&#34;</span>, <span style="color:#e6db74">&#34;Harry&#34;</span>, relationship<span style="color:#f92672">=</span>Relationship<span style="color:#f92672">.</span>bff)
+connection(<span style="color:#4070a0">&#34;Ron&#34;</span>, <span style="color:#4070a0">&#34;Harry&#34;</span>, relationship<span style="color:#666">=</span>Relationship<span style="color:#666">.</span>bff)
 </code></pre></div><pre><code>'Ron is best friends with Harry'
 </code></pre>
 <p>&ldquo;Huh?&rdquo;, you say. &ldquo;It looks to me like things just got more verbosified. I like making up words.&rdquo;</p>
 <p>Cool word, and you would be right, things did get more wordy. Moreover, adding all those annotations won&rsquo;t prevent someone from doing what we mentioned before,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">evil <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span>: <span style="color:#e6db74">&#39;power&#39;</span>
-evil<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;corrupts&#39;</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">evil <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">lambda</span>: <span style="color:#4070a0">&#39;power&#39;</span>
+evil<span style="color:#666">.</span>value <span style="color:#666">=</span> <span style="color:#4070a0">&#39;corrupts&#39;</span>
 
-connection(<span style="color:#e6db74">&#34;Ron&#34;</span>, <span style="color:#e6db74">&#34;Harry&#34;</span>, relationship<span style="color:#f92672">=</span>evil) <span style="color:#75715e"># this still works, though we don&#39;t want it to</span>
+connection(<span style="color:#4070a0">&#34;Ron&#34;</span>, <span style="color:#4070a0">&#34;Harry&#34;</span>, relationship<span style="color:#666">=</span>evil) <span style="color:#60a0b0;font-style:italic"># this still works, though we don&#39;t want it to</span>
 </code></pre></div><p>&hellip; <strong>unless</strong>, that is, we run that code using - <a href="http://mypy-lang.org/"><strong>mypy</strong></a></p>
 <p>Mypy allows you to add type annotations and enforce them prior to running your program, so the only way the above function would run is if the relationship parameter was of type Relationship when called. Amazing!</p>
 <p>Now, anyone reading our code would know exactly the types of things that could be passed as parameters to functions, and mypy will help us to enforce the type annotations we set.</p>
@@ -271,122 +264,122 @@ connection(<span style="color:#e6db74">&#34;Ron&#34;</span>, <span style="color:
 <li>A catastrophic runtime error occurred. No data returned</li>
 </ol>
 <p>So, before we look at the code, it&rsquo;s cool to note that as of Python 3.6 we now have typed NamedTuples that we can declare using a new syntax in 3.6. We had this typed namedtuples in Python 3.5 but I think the new syntax is much cleaner.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#75715e"># old way</span>
-Employee <span style="color:#f92672">=</span> NamedTuple(<span style="color:#e6db74">&#39;Employee&#39;</span>, [(<span style="color:#e6db74">&#39;name&#39;</span>, str), (<span style="color:#e6db74">&#39;id&#39;</span>, int)])
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#60a0b0;font-style:italic"># old way</span>
+Employee <span style="color:#666">=</span> NamedTuple(<span style="color:#4070a0">&#39;Employee&#39;</span>, [(<span style="color:#4070a0">&#39;name&#39;</span>, <span style="color:#007020">str</span>), (<span style="color:#4070a0">&#39;id&#39;</span>, <span style="color:#007020">int</span>)])
 
-<span style="color:#75715e"># new sauce</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Employee</span>(NamedTuple):
-    name : str
-    id   : int
+<span style="color:#60a0b0;font-style:italic"># new sauce</span>
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">Employee</span>(NamedTuple):
+    name : <span style="color:#007020">str</span>
+    <span style="color:#007020">id</span>   : <span style="color:#007020">int</span>
 </code></pre></div><p>Also, an Optional describes something that can be of a certain type, or None.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">possible_integer: Optional[int] <span style="color:#f92672">=</span> None <span style="color:#75715e"># we could make this an integer later on</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">possible_integer: Optional[<span style="color:#007020">int</span>] <span style="color:#666">=</span> None <span style="color:#60a0b0;font-style:italic"># we could make this an integer later on</span>
 </code></pre></div><p>You&rsquo;ll see the use of optional values a lot in functional programming. In fact, the following pattern of combining tuples and optional values is the primary way we handle errors in Go. Optionals are also ubiquitous in Swift - not only in the context of error-handling.</p>
 <p>Optionals are a really handy concept, and now Python has them as well as a lot of the other type safety goodness of other languages through mypy.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> NamedTuple, Optional
-<span style="color:#f92672">import</span> requests
-<span style="color:#f92672">import</span> logging
-<span style="color:#f92672">import</span> json
-<span style="color:#f92672">import</span> enum
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">typing</span> <span style="color:#007020;font-weight:bold">import</span> NamedTuple, Optional
+<span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">requests</span>
+<span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">logging</span>
+<span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">json</span>
+<span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">enum</span>
 
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ApiInteraction</span>(enum<span style="color:#f92672">.</span>Enum):
-    <span style="color:#e6db74">&#34;&#34;&#34;The 3 possible states we can expect when interacting with the API.&#34;&#34;&#34;</span>
-    SUCCESS <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-    ERROR <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
-    FAILURE <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">ApiInteraction</span>(enum<span style="color:#666">.</span>Enum):
+    <span style="color:#4070a0">&#34;&#34;&#34;The 3 possible states we can expect when interacting with the API.&#34;&#34;&#34;</span>
+    SUCCESS <span style="color:#666">=</span> <span style="color:#40a070">1</span>
+    ERROR <span style="color:#666">=</span> <span style="color:#40a070">2</span>
+    FAILURE <span style="color:#666">=</span> <span style="color:#40a070">3</span>
 
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ApiResponse</span>(NamedTuple):
-    <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    This is sort of a really dumbed-down version of an HTTP response,
-</span><span style="color:#e6db74">    if you think of it in terms of status codes and response bodies.
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">ApiResponse</span>(NamedTuple):
+    <span style="color:#4070a0">&#34;&#34;&#34;
+</span><span style="color:#4070a0">    This is sort of a really dumbed-down version of an HTTP response,
+</span><span style="color:#4070a0">    if you think of it in terms of status codes and response bodies.
+</span><span style="color:#4070a0">    &#34;&#34;&#34;</span>
     status: ApiInteraction
-    payload: Optional[dict]
+    payload: Optional[<span style="color:#007020">dict</span>]
 
 
         
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hit_endpoint</span>(url: str) <span style="color:#f92672">-&gt;</span> ApiResponse:
-    <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    1. Send an http request to a url
-</span><span style="color:#e6db74">    2. Parse the json response as a dictionary
-</span><span style="color:#e6db74">    3. Return an ApiResponse object
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+<span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">hit_endpoint</span>(url: <span style="color:#007020">str</span>) <span style="color:#666">-&gt;</span> ApiResponse:
+    <span style="color:#4070a0">&#34;&#34;&#34;
+</span><span style="color:#4070a0">    1. Send an http request to a url
+</span><span style="color:#4070a0">    2. Parse the json response as a dictionary
+</span><span style="color:#4070a0">    3. Return an ApiResponse object
+</span><span style="color:#4070a0">    &#34;&#34;&#34;</span>
     
     
-    <span style="color:#66d9ef">try</span>:
+    <span style="color:#007020;font-weight:bold">try</span>:
         
-        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url) <span style="color:#75715e"># step 1</span>
-        payload <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>json() <span style="color:#75715e"># step 2</span>
+        response <span style="color:#666">=</span> requests<span style="color:#666">.</span>get(url) <span style="color:#60a0b0;font-style:italic"># step 1</span>
+        payload <span style="color:#666">=</span> response<span style="color:#666">.</span>json() <span style="color:#60a0b0;font-style:italic"># step 2</span>
         
-    <span style="color:#66d9ef">except</span> json<span style="color:#f92672">.</span>decoder<span style="color:#f92672">.</span>JSONDecodeError <span style="color:#66d9ef">as</span> e:
+    <span style="color:#007020;font-weight:bold">except</span> json<span style="color:#666">.</span>decoder<span style="color:#666">.</span>JSONDecodeError <span style="color:#007020;font-weight:bold">as</span> e:
         
-        <span style="color:#75715e"># something went wrong in step 2; we knew this might happen</span>
+        <span style="color:#60a0b0;font-style:italic"># something went wrong in step 2; we knew this might happen</span>
         
-        <span style="color:#75715e"># log a simple error message</span>
+        <span style="color:#60a0b0;font-style:italic"># log a simple error message</span>
         
-        logging<span style="color:#f92672">.</span>error(f<span style="color:#e6db74">&#39;could not decode json from {url}&#39;</span>)
+        logging<span style="color:#666">.</span>error(f<span style="color:#4070a0">&#39;could not decode json from {url}&#39;</span>)
         
-        <span style="color:#75715e"># log the full traceback at a lower level</span>
+        <span style="color:#60a0b0;font-style:italic"># log the full traceback at a lower level</span>
         
-        logging<span style="color:#f92672">.</span>info(e, exc_info<span style="color:#f92672">=</span>True)
+        logging<span style="color:#666">.</span>info(e, exc_info<span style="color:#666">=</span>True)
         
-        <span style="color:#75715e"># since we anticipated this error, make the</span>
-        <span style="color:#75715e"># ApiResponse.status an ERROR as opposed to a failure</span>
+        <span style="color:#60a0b0;font-style:italic"># since we anticipated this error, make the</span>
+        <span style="color:#60a0b0;font-style:italic"># ApiResponse.status an ERROR as opposed to a failure</span>
         
-        <span style="color:#66d9ef">return</span> ApiResponse(ApiInteraction<span style="color:#f92672">.</span>ERROR, None)
+        <span style="color:#007020;font-weight:bold">return</span> ApiResponse(ApiInteraction<span style="color:#666">.</span>ERROR, None)
     
-    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+    <span style="color:#007020;font-weight:bold">except</span> <span style="color:#007020">Exception</span> <span style="color:#007020;font-weight:bold">as</span> e:
         
-        <span style="color:#75715e"># something went wrong in step 1 or 2 that</span>
-        <span style="color:#75715e"># we couldn&#39;t anticipate</span>
+        <span style="color:#60a0b0;font-style:italic"># something went wrong in step 1 or 2 that</span>
+        <span style="color:#60a0b0;font-style:italic"># we couldn&#39;t anticipate</span>
         
-        <span style="color:#75715e"># log the exception with the traceback</span>
+        <span style="color:#60a0b0;font-style:italic"># log the exception with the traceback</span>
         
-        logging<span style="color:#f92672">.</span>error(f<span style="color:#e6db74">&#34;Something bad happened trying to reach {url}&#34;</span>)
-        logging<span style="color:#f92672">.</span>info(e, exc_info<span style="color:#f92672">=</span>True)
+        logging<span style="color:#666">.</span>error(f<span style="color:#4070a0">&#34;Something bad happened trying to reach {url}&#34;</span>)
+        logging<span style="color:#666">.</span>info(e, exc_info<span style="color:#666">=</span>True)
         
-        <span style="color:#75715e"># Since something catastrophic happened that</span>
-        <span style="color:#75715e"># we didn&#39;t anticipate i.e. (DivideByBananaError)</span>
-        <span style="color:#75715e"># we set the ApiResponse.status to FAILURE</span>
+        <span style="color:#60a0b0;font-style:italic"># Since something catastrophic happened that</span>
+        <span style="color:#60a0b0;font-style:italic"># we didn&#39;t anticipate i.e. (DivideByBananaError)</span>
+        <span style="color:#60a0b0;font-style:italic"># we set the ApiResponse.status to FAILURE</span>
         
-        <span style="color:#66d9ef">return</span> ApiResponse(ApiInteraction<span style="color:#f92672">.</span>FAILURE, None)
+        <span style="color:#007020;font-weight:bold">return</span> ApiResponse(ApiInteraction<span style="color:#666">.</span>FAILURE, None)
     
-    <span style="color:#66d9ef">else</span>:
+    <span style="color:#007020;font-weight:bold">else</span>:
         
-        <span style="color:#75715e"># Everything worked as planned! No errors!</span>
+        <span style="color:#60a0b0;font-style:italic"># Everything worked as planned! No errors!</span>
         
-        <span style="color:#66d9ef">return</span> ApiResponse(ApiInteraction<span style="color:#f92672">.</span>SUCCESS, payload)
+        <span style="color:#007020;font-weight:bold">return</span> ApiResponse(ApiInteraction<span style="color:#666">.</span>SUCCESS, payload)
 
 
-<span style="color:#75715e"># Python is awesome. We can either use the function by itself</span>
-<span style="color:#75715e"># or use it as a constructor for our ApiResponse class </span>
-<span style="color:#75715e"># by doing thefollowing:</span>
+<span style="color:#60a0b0;font-style:italic"># Python is awesome. We can either use the function by itself</span>
+<span style="color:#60a0b0;font-style:italic"># or use it as a constructor for our ApiResponse class </span>
+<span style="color:#60a0b0;font-style:italic"># by doing thefollowing:</span>
 
 
-ApiResponse<span style="color:#f92672">.</span>from_url <span style="color:#f92672">=</span> hit_endpoint
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_endpoint_response</span>():
+ApiResponse<span style="color:#666">.</span>from_url <span style="color:#666">=</span> hit_endpoint
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">test_endpoint_response</span>():
 
-    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://httpbin.org/headers&#39;</span>
-    response <span style="color:#f92672">=</span> ApiResponse<span style="color:#f92672">.</span>from_url(url)
-    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>status <span style="color:#f92672">==</span> ApiInteraction<span style="color:#f92672">.</span>SUCCESS
-    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>status <span style="color:#f92672">==</span> hit_endpoint(url)<span style="color:#f92672">.</span>status <span style="color:#75715e"># our function and constructor work the same!</span>
-    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>payload <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None
-
-
-    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://twitter.com&#39;</span>
-    response <span style="color:#f92672">=</span> ApiResponse<span style="color:#f92672">.</span>from_url(url)
-    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>status <span style="color:#f92672">==</span> ApiInteraction<span style="color:#f92672">.</span>ERROR
-    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>status <span style="color:#f92672">==</span> hit_endpoint(url)<span style="color:#f92672">.</span>status
-    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>payload <span style="color:#f92672">is</span> None
+    url <span style="color:#666">=</span> <span style="color:#4070a0">&#39;http://httpbin.org/headers&#39;</span>
+    response <span style="color:#666">=</span> ApiResponse<span style="color:#666">.</span>from_url(url)
+    <span style="color:#007020;font-weight:bold">assert</span> response<span style="color:#666">.</span>status <span style="color:#666">==</span> ApiInteraction<span style="color:#666">.</span>SUCCESS
+    <span style="color:#007020;font-weight:bold">assert</span> response<span style="color:#666">.</span>status <span style="color:#666">==</span> hit_endpoint(url)<span style="color:#666">.</span>status <span style="color:#60a0b0;font-style:italic"># our function and constructor work the same!</span>
+    <span style="color:#007020;font-weight:bold">assert</span> response<span style="color:#666">.</span>payload <span style="color:#007020;font-weight:bold">is</span> <span style="color:#007020;font-weight:bold">not</span> None
 
 
-    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;foo&#39;</span>
-    response <span style="color:#f92672">=</span> ApiResponse<span style="color:#f92672">.</span>from_url(url)
-    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>status <span style="color:#f92672">==</span> ApiInteraction<span style="color:#f92672">.</span>FAILURE
-    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>status <span style="color:#f92672">==</span> hit_endpoint(url)<span style="color:#f92672">.</span>status
-    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>payload <span style="color:#f92672">is</span> None
+    url <span style="color:#666">=</span> <span style="color:#4070a0">&#39;http://twitter.com&#39;</span>
+    response <span style="color:#666">=</span> ApiResponse<span style="color:#666">.</span>from_url(url)
+    <span style="color:#007020;font-weight:bold">assert</span> response<span style="color:#666">.</span>status <span style="color:#666">==</span> ApiInteraction<span style="color:#666">.</span>ERROR
+    <span style="color:#007020;font-weight:bold">assert</span> response<span style="color:#666">.</span>status <span style="color:#666">==</span> hit_endpoint(url)<span style="color:#666">.</span>status
+    <span style="color:#007020;font-weight:bold">assert</span> response<span style="color:#666">.</span>payload <span style="color:#007020;font-weight:bold">is</span> None
+
+
+    url <span style="color:#666">=</span> <span style="color:#4070a0">&#39;foo&#39;</span>
+    response <span style="color:#666">=</span> ApiResponse<span style="color:#666">.</span>from_url(url)
+    <span style="color:#007020;font-weight:bold">assert</span> response<span style="color:#666">.</span>status <span style="color:#666">==</span> ApiInteraction<span style="color:#666">.</span>FAILURE
+    <span style="color:#007020;font-weight:bold">assert</span> response<span style="color:#666">.</span>status <span style="color:#666">==</span> hit_endpoint(url)<span style="color:#666">.</span>status
+    <span style="color:#007020;font-weight:bold">assert</span> response<span style="color:#666">.</span>payload <span style="color:#007020;font-weight:bold">is</span> None
         
     
 test_endpoint_response()
@@ -419,16 +412,10 @@ ERROR:root:Something bad happened trying to reach foo
       <footer class="footer">
   <section class="container">
     
-      <p>“Talk is cheap. Show me the code.”</p>
-    
-     © 2020
-    
-       · 
-      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      <p>Stephan Fitzpatrick</p>
     
     
-       · 
-      [<a href="https://github.com/luizdepra/hugo-coder/tree/"></a>]
+    
     
   </section>
 </footer>
@@ -448,7 +435,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
 
   </body>
 

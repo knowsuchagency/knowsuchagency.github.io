@@ -6,11 +6,7 @@
     <description>Recent content on knowsuchagency</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.knowsuchagency.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.knowsuchagency.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Monads for Mortals (in Python)</title>
       <link>https://www.knowsuchagency.com/posts/monads-for-mortals-in-python/</link>
@@ -21,22 +17,31 @@
     </item>
     
     <item>
-      <title>Let&#39;s Chat</title>
+      <title></title>
+      <link>https://www.knowsuchagency.com/book/</link>
+      <pubDate>Sat, 28 Dec 2019 19:59:43 -0800</pubDate>
+      
+      <guid>https://www.knowsuchagency.com/book/</guid>
+      <description>   h1 {text-align:center;} h2 {text-align:center;}       </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://www.knowsuchagency.com/contact/</link>
       <pubDate>Sat, 28 Dec 2019 19:59:43 -0800</pubDate>
       
       <guid>https://www.knowsuchagency.com/contact/</guid>
-      <description>   h1 {text-align:center;} h2 {text-align:center;}    stephan@knowsuchagency.com    </description>
+      <description>  (function(h,b,s,n,i,p,e,t) { h._HB_ = h._HB_ || {};h._HB_.pid = i;;;; t=b.createElement(s);t.type=&#34;text/javascript&#34;;t.async=!0;t.src=n; e=b.getElementsByTagName(s)[0];e.parentNode.insertBefore(t,e); })(window,document,&#34;script&#34;,&#34;https://widget.honeybook.com/assets_users_production/websiteplacements/placement-controller.min.js&#34;,&#34;607bb9cec6f37673f6d60ffe&#34;);  </description>
     </item>
     
     <item>
-      <title>About</title>
+      <title>About Us</title>
       <link>https://www.knowsuchagency.com/about/</link>
       <pubDate>Sat, 28 Dec 2019 19:43:58 -0800</pubDate>
       
       <guid>https://www.knowsuchagency.com/about/</guid>
-      <description>Stephan is a seasoned and accomplished data engineer.
-Previously trained as a Mandarin Chinese linguist at the Defense Language Institute while serving in the US Navy, he was later stationed at the National Security Agency in Hawaii, working as an intelligence analyst. During his tenure at the Agency from 2012 through 2016, he took it upon himself to teach himself how to program in order to automate the work he and other military analysts were doing.</description>
+      <description>knowsuchagency corp is a mission-driven veteran-owned consultation and training company that applies principles from military intelligence towards the creation of technical solutions to business problems.
+KNOWSUCHAGENCY provides consultation, training, and custom software solutions for businesses. As part of its mission, the company offers technical training to veterans looking to become software practitioners.</description>
     </item>
     
     <item>

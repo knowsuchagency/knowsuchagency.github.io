@@ -5,10 +5,6 @@
     <link>https://www.knowsuchagency.com/categories/</link>
     <description>Recent content in Categories on knowsuchagency</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    
-	<atom:link href="https://www.knowsuchagency.com/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en</language><atom:link href="https://www.knowsuchagency.com/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

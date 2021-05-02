@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="author" content="Stephan Fitzpatrick">
+    <meta name="author" content="knowsuchagency">
     <meta name="description" content="knowsuchagency">
-    <meta name="keywords" content="blog,developer">
+    <meta name="keywords" content="blog,python,consulting,training,business,cloud">
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Sentiment Analysis of the new Macbook Pro"/>
@@ -16,9 +16,10 @@
     <meta property="og:title" content="Sentiment Analysis of the new Macbook Pro" />
 <meta property="og:description" content="What does reddit think of the new macbook pro" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.knowsuchagency.com/posts/mbp-sentiment-analysis/" />
-<meta property="article:published_time" content="2016-10-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2016-10-28T00:00:00+00:00" />
+<meta property="og:url" content="https://www.knowsuchagency.com/posts/mbp-sentiment-analysis/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-10-28T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2016-10-28T00:00:00&#43;00:00" />
+
 
 
     
@@ -45,12 +46,6 @@
     
 
     
-      
-        
-        
-        <link rel="stylesheet" href="https://www.knowsuchagency.com/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU=" crossorigin="anonymous" media="screen" />
-      
-    
 
     
 
@@ -59,14 +54,12 @@
     <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://www.knowsuchagency.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.72.0" />
+    <meta name="generator" content="Hugo 0.83.0" />
   </head>
 
   
   
-    
-  
-  <body class="colorscheme-dark">
+  <body class="colorscheme-light">
     <main class="wrapper">
       <nav class="navigation">
   <section class="container">
@@ -79,15 +72,15 @@
       
         
           <li class="navigation-item">
-            <a class="navigation-link" href="https://www.knowsuchagency.com/about/">About</a>
-          </li>
-        
-          <li class="navigation-item">
             <a class="navigation-link" href="https://www.knowsuchagency.com/posts/">Blog</a>
           </li>
         
           <li class="navigation-item">
             <a class="navigation-link" href="https://www.knowsuchagency.com/contact/">Contact</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.knowsuchagency.com/book/">Book</a>
           </li>
         
       
@@ -150,21 +143,21 @@ it seemed to me like the overwhelming majority of users on Reddit <a href="https
 <p>Example:</p>
 <pre><code>User-Agent: android:com.example.myredditapp:v1.2.3 (by /u/kemitche)
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> praw
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">praw</span>
 
-<span style="color:#75715e"># I saved my user agent string in a local file</span>
-<span style="color:#75715e"># since one should use their own</span>
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;./.user_agent&#39;</span>) <span style="color:#66d9ef">as</span> f:
-    user_agent <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+<span style="color:#60a0b0;font-style:italic"># I saved my user agent string in a local file</span>
+<span style="color:#60a0b0;font-style:italic"># since one should use their own</span>
+<span style="color:#007020;font-weight:bold">with</span> <span style="color:#007020">open</span>(<span style="color:#4070a0">&#39;./.user_agent&#39;</span>) <span style="color:#007020;font-weight:bold">as</span> f:
+    user_agent <span style="color:#666">=</span> f<span style="color:#666">.</span>read()
 
-<span style="color:#75715e"># instantiate Reddit connection class</span>
-r <span style="color:#f92672">=</span> praw<span style="color:#f92672">.</span>Reddit(user_agent<span style="color:#f92672">=</span>user_agent)
+<span style="color:#60a0b0;font-style:italic"># instantiate Reddit connection class</span>
+r <span style="color:#666">=</span> praw<span style="color:#666">.</span>Reddit(user_agent<span style="color:#666">=</span>user_agent)
 
-<span style="color:#75715e"># let&#39;s get the current top 10 submissions</span>
-<span style="color:#75715e"># since praw interacts with reddit lazily, we wrap the method</span>
-<span style="color:#75715e"># call in a list</span>
-submissions <span style="color:#f92672">=</span> list(r<span style="color:#f92672">.</span>get_subreddit(<span style="color:#e6db74">&#39;apple&#39;</span>)<span style="color:#f92672">.</span>get_hot(limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>))
-[str(s) <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> submissions]
+<span style="color:#60a0b0;font-style:italic"># let&#39;s get the current top 10 submissions</span>
+<span style="color:#60a0b0;font-style:italic"># since praw interacts with reddit lazily, we wrap the method</span>
+<span style="color:#60a0b0;font-style:italic"># call in a list</span>
+submissions <span style="color:#666">=</span> <span style="color:#007020">list</span>(r<span style="color:#666">.</span>get_subreddit(<span style="color:#4070a0">&#39;apple&#39;</span>)<span style="color:#666">.</span>get_hot(limit<span style="color:#666">=</span><span style="color:#40a070">10</span>))
+[<span style="color:#007020">str</span>(s) <span style="color:#007020;font-weight:bold">for</span> s <span style="color:#007020;font-weight:bold">in</span> submissions]
 </code></pre></div><pre><code>['375 :: Apple Keynote, October 2016 | Post-Event Megathread',
  '44 :: Pre-order Shipping Megathread | Mac Lineup, 2016',
  &quot;4942 :: Let's talk about those prices...&quot;,
@@ -178,8 +171,8 @@ submissions <span style="color:#f92672">=</span> list(r<span style="color:#f9267
 </code></pre>
 <p>Cool, so we have some data. From looking at the actual subreddit in a browser, we can see the two top submissions are official threads so we&rsquo;ll just skip over them.</p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">submissions <span style="color:#f92672">=</span> submissions[<span style="color:#ae81ff">2</span>:]
-[str(s) <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> submissions]
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">submissions <span style="color:#666">=</span> submissions[<span style="color:#40a070">2</span>:]
+[<span style="color:#007020">str</span>(s) <span style="color:#007020;font-weight:bold">for</span> s <span style="color:#007020;font-weight:bold">in</span> submissions]
 </code></pre></div><pre><code>[&quot;4942 :: Let's talk about those prices...&quot;,
  &quot;3027 :: I dont mind the lack of standard USB, but you're telling me I can't u...&quot;,
  '1759 :: Tim Cook: &quot;We think technology should be available to everyone&quot; and t...',
@@ -192,43 +185,43 @@ submissions <span style="color:#f92672">=</span> list(r<span style="color:#f9267
 <h3 id="submission-1">Submission 1</h3>
 <p>We&rsquo;ll start by looking at the comments in the first submission about Apple&rsquo;s new pricing. Can you guess what people think?!</p>
 <p>In praw, every Submission has a comments attribute which is iterable. This attribute isn&rsquo;t homogeneous. That is, some of the items will be Comment objects, and there may be a MoreComments class in there as well, so we&rsquo;ll need to handle that.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># grab the first submission</span>
-submission <span style="color:#f92672">=</span> submissions[<span style="color:#ae81ff">0</span>]
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># grab the first submission</span>
+submission <span style="color:#666">=</span> submissions[<span style="color:#40a070">0</span>]
 
-<span style="color:#75715e"># the actual text is in the body</span>
-<span style="color:#75715e"># attribute of a Comment</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_comments</span>(submission, n<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>):
-    <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    Return a list of comments from a submission.
-</span><span style="color:#e6db74">    
-</span><span style="color:#e6db74">    We can&#39;t just use submission.comments, because some
-</span><span style="color:#e6db74">    of those comments may be MoreComments classes and those don&#39;t
-</span><span style="color:#e6db74">    have bodies.
-</span><span style="color:#e6db74">    
-</span><span style="color:#e6db74">    n is the number of comments we want to limit ourselves to
-</span><span style="color:#e6db74">    from the submission.
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-    count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">barf_comments</span>(iterable<span style="color:#f92672">=</span>submission<span style="color:#f92672">.</span>comments):
-        <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">        This generator barfs out comments.
-</span><span style="color:#e6db74">        
-</span><span style="color:#e6db74">        Some comments seem not to have bodies, so we skip those.
-</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+<span style="color:#60a0b0;font-style:italic"># the actual text is in the body</span>
+<span style="color:#60a0b0;font-style:italic"># attribute of a Comment</span>
+<span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">get_comments</span>(submission, n<span style="color:#666">=</span><span style="color:#40a070">20</span>):
+    <span style="color:#4070a0">&#34;&#34;&#34;
+</span><span style="color:#4070a0">    Return a list of comments from a submission.
+</span><span style="color:#4070a0">    
+</span><span style="color:#4070a0">    We can&#39;t just use submission.comments, because some
+</span><span style="color:#4070a0">    of those comments may be MoreComments classes and those don&#39;t
+</span><span style="color:#4070a0">    have bodies.
+</span><span style="color:#4070a0">    
+</span><span style="color:#4070a0">    n is the number of comments we want to limit ourselves to
+</span><span style="color:#4070a0">    from the submission.
+</span><span style="color:#4070a0">    &#34;&#34;&#34;</span>
+    count <span style="color:#666">=</span> <span style="color:#40a070">0</span>
+    <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">barf_comments</span>(iterable<span style="color:#666">=</span>submission<span style="color:#666">.</span>comments):
+        <span style="color:#4070a0">&#34;&#34;&#34;
+</span><span style="color:#4070a0">        This generator barfs out comments.
+</span><span style="color:#4070a0">        
+</span><span style="color:#4070a0">        Some comments seem not to have bodies, so we skip those.
+</span><span style="color:#4070a0">        &#34;&#34;&#34;</span>
         nonlocal count
-        <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> iterable:
-            <span style="color:#66d9ef">if</span> count <span style="color:#f92672">==</span> n:
-                <span style="color:#66d9ef">break</span>
-            <span style="color:#66d9ef">elif</span> hasattr(c, <span style="color:#e6db74">&#39;body&#39;</span>):
-                <span style="color:#66d9ef">yield</span> c<span style="color:#f92672">.</span>body
-                count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-            <span style="color:#66d9ef">elif</span> hasattr(c, <span style="color:#e6db74">&#39;__iter__&#39;</span>):
-                <span style="color:#75715e"># handle MoreComments classes</span>
-                <span style="color:#66d9ef">yield</span> <span style="color:#f92672">from</span> barf_comments(c)
-    <span style="color:#66d9ef">return</span> barf_comments()
+        <span style="color:#007020;font-weight:bold">for</span> c <span style="color:#007020;font-weight:bold">in</span> iterable:
+            <span style="color:#007020;font-weight:bold">if</span> count <span style="color:#666">==</span> n:
+                <span style="color:#007020;font-weight:bold">break</span>
+            <span style="color:#007020;font-weight:bold">elif</span> <span style="color:#007020">hasattr</span>(c, <span style="color:#4070a0">&#39;body&#39;</span>):
+                <span style="color:#007020;font-weight:bold">yield</span> c<span style="color:#666">.</span>body
+                count <span style="color:#666">+=</span> <span style="color:#40a070">1</span>
+            <span style="color:#007020;font-weight:bold">elif</span> <span style="color:#007020">hasattr</span>(c, <span style="color:#4070a0">&#39;__iter__&#39;</span>):
+                <span style="color:#60a0b0;font-style:italic"># handle MoreComments classes</span>
+                <span style="color:#007020;font-weight:bold">yield</span> <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">barf_comments</span>(c)
+    <span style="color:#007020;font-weight:bold">return</span> barf_comments()
                 
-comments <span style="color:#f92672">=</span> list(get_comments(submission))
-list(comments)
+comments <span style="color:#666">=</span> <span style="color:#007020">list</span>(get_comments(submission))
+<span style="color:#007020">list</span>(comments)
 </code></pre></div><pre><code>['I\'m still trying to figure out what justifies a $200 increase on the 13&quot; ***without*** the Touch Bar...',
  &quot;Probably shouldn't have been surprised, but it hit me like a slippery fish. My jaw dropped.\n\nThey've priced me out, sadly.&quot;,
  '$4300 to max out the 15 pro...lol',
@@ -255,42 +248,42 @@ list(comments)
 <p>We&rsquo;ll combine them into one piece of text and determine the overall sentiment from them.</p>
 <p>According to the TextBlob docs, this is how to use their sentiment analysis api and how to interpret it</p>
 <h3 id="the-sentiment-property-returns-a-namedtuple-of-the-form-sentimentpolarity-subjectivity-the-polarity-score-is-a-float-within-the-range--10-10-the-subjectivity-is-a-float-within-the-range-00-10-where-00-is-very-objective-and-10-is-very-subjective">The sentiment property returns a namedtuple of the form Sentiment(polarity, subjectivity). The polarity score is a float within the range [-1.0, 1.0]. The subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective.</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
 &gt;&gt;&gt; testimonial = TextBlob(&#34;Textblob is amazingly simple to use. What great fun!&#34;)
 &gt;&gt;&gt; testimonial.sentiment
 Sentiment(polarity=0.39166666666666666, subjectivity=0.4357142857142857)
 &gt;&gt;&gt; testimonial.sentiment.polarity
 0.39166666666666666
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> textblob <span style="color:#f92672">import</span> TextBlob
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">textblob</span> <span style="color:#007020;font-weight:bold">import</span> TextBlob
 
-comment_blob <span style="color:#f92672">=</span> TextBlob(<span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(comments))
+comment_blob <span style="color:#666">=</span> TextBlob(<span style="color:#4070a0">&#39;&#39;</span><span style="color:#666">.</span>join(comments))
 </code></pre></div><pre><code>Sentiment(polarity=-0.06283927712499143, subjectivity=0.5978612657184086)
 </code></pre>
 <p>Huh, things aren&rsquo;t looking good so far. Well, let&rsquo;s look at more data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">more_comments <span style="color:#f92672">=</span> []
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> submission <span style="color:#f92672">in</span> submissions:
-    more_comments<span style="color:#f92672">.</span>extend(get_comments(submission, <span style="color:#ae81ff">200</span>))
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">len(more_comments)
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">more_comments <span style="color:#666">=</span> []
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">for</span> submission <span style="color:#007020;font-weight:bold">in</span> submissions:
+    more_comments<span style="color:#666">.</span>extend(get_comments(submission, <span style="color:#40a070">200</span>))
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020">len</span>(more_comments)
 </code></pre></div><pre><code>404
 </code></pre>
 <p>I figure there are many more than 404 comments for those submissions. I suspect we only get that many because praw <a href="https://praw.readthedocs.io/en/stable/pages/faq.html">tries to do the right thing</a> and follow Reddit&rsquo;s guidelines for the amount of requests one can make within a given time limit. We&rsquo;re not going to worry about that now. 404 comments is good enough since we&rsquo;re only tinkering :)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bigger_blob <span style="color:#f92672">=</span> TextBlob(<span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(more_comments))
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bigger_blob <span style="color:#666">=</span> TextBlob(<span style="color:#4070a0">&#39;&#39;</span><span style="color:#666">.</span>join(more_comments))
 
-<span style="color:#75715e"># The first time I ran this method, it failed</span>
-<span style="color:#75715e"># because I hadn&#39;t read TextBlob&#39;s docs closely</span>
-<span style="color:#75715e"># and downloaded the corpus of text in needed.</span>
-<span style="color:#75715e"># python -m textblob.download_corpora</span>
+<span style="color:#60a0b0;font-style:italic"># The first time I ran this method, it failed</span>
+<span style="color:#60a0b0;font-style:italic"># because I hadn&#39;t read TextBlob&#39;s docs closely</span>
+<span style="color:#60a0b0;font-style:italic"># and downloaded the corpus of text in needed.</span>
+<span style="color:#60a0b0;font-style:italic"># python -m textblob.download_corpora</span>
 
-<span style="color:#66d9ef">print</span>(len(bigger_blob<span style="color:#f92672">.</span>words))
+<span style="color:#007020;font-weight:bold">print</span>(<span style="color:#007020">len</span>(bigger_blob<span style="color:#666">.</span>words))
 </code></pre></div><pre><code>17046
 </code></pre>
 <p>Let&rsquo;s see what some of the most common words are</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> Counter
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">collections</span> <span style="color:#007020;font-weight:bold">import</span> Counter
 
-counter <span style="color:#f92672">=</span> Counter(bigger_blob<span style="color:#f92672">.</span>words)
+counter <span style="color:#666">=</span> Counter(bigger_blob<span style="color:#666">.</span>words)
 
-<span style="color:#75715e"># the most common words are pretty mundane common parts of speech, so we&#39;ll skip the first few</span>
-counter<span style="color:#f92672">.</span>most_common()[<span style="color:#ae81ff">60</span>:<span style="color:#ae81ff">100</span>]
+<span style="color:#60a0b0;font-style:italic"># the most common words are pretty mundane common parts of speech, so we&#39;ll skip the first few</span>
+counter<span style="color:#666">.</span>most_common()[<span style="color:#40a070">60</span>:<span style="color:#40a070">100</span>]
 </code></pre></div><pre><code>[('no', 43),
  ('about', 42),
  ('has', 42),
@@ -333,7 +326,7 @@ counter<span style="color:#f92672">.</span>most_common()[<span style="color:#ae8
  ('Bar', 25)]
 </code></pre>
 <h3 id="finally-lets-see-what-the-over-all-sentiment-analysis-is">Finally, let&rsquo;s see what the over all sentiment analysis is</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bigger_blob<span style="color:#f92672">.</span>sentiment
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bigger_blob<span style="color:#666">.</span>sentiment
 </code></pre></div><pre><code>Sentiment(polarity=0.07565960941292733, subjectivity=0.52062214346886)
 </code></pre>
 <p>We see that the overall sentiment is much more positive when we include a larger body of comments.</p>
@@ -359,16 +352,10 @@ counter<span style="color:#f92672">.</span>most_common()[<span style="color:#ae8
       <footer class="footer">
   <section class="container">
     
-      <p>“Talk is cheap. Show me the code.”</p>
-    
-     © 2020
-    
-       · 
-      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      <p>Stephan Fitzpatrick</p>
     
     
-       · 
-      [<a href="https://github.com/luizdepra/hugo-coder/tree/"></a>]
+    
     
   </section>
 </footer>
@@ -388,7 +375,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
 
   </body>
 
