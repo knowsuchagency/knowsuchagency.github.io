@@ -4,9 +4,11 @@ import functools
 import logging
 import re
 from pathlib import Path
+import subprocess as sp
 
 import nbformat
 import toml
+
 # from invoke import task
 from nbconvert import MarkdownExporter
 from nbconvert.preprocessors import Preprocessor
@@ -15,9 +17,11 @@ from traitlets.config import Config
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 
+config = YAML().load(Path("invoke.yaml"))
+
 
 # @task(aliases=["up"])
-def serve(c, draft=True):
+def serve(draft=True):
     """Run the hugo server alongside a background thread that will re-render notebooks into markdown posts."""
 
     observer = Observer()
@@ -30,25 +34,21 @@ def serve(c, draft=True):
 
     atexit.register(functools.partial(observer.join, timeout=0.1))
 
-    c.run("hugo serve" + " -D" if draft else "")
+    sp.run("hugo serve" + (" -D" if draft else ""), shell=True)
 
 
 # @task
-def render_notebooks(c, reload_config=False):
+def render_notebooks(reload_config=False):
     """Render notebooks into respective markdown posts."""
     notebooks_path = Path("knowsuchagency_blog", "notebooks")
 
     notebooks = (n for n in notebooks_path.iterdir() if n.suffix == ".ipynb")
 
+    notebooks_config = config["notebooks"]
+
     for notebook in notebooks:
 
         front_matter = {}
-
-        notebooks_config = (
-            c.config.notebooks
-            if not reload_config
-            else YAML().load(Path("invoke.yaml"))["notebooks"]
-        )
 
         if notebook.stem in notebooks_config:
             front_matter.update(notebooks_config[notebook.stem])
@@ -156,11 +156,9 @@ class CustomPreprocessor(Preprocessor):
 
         post_code_filtered = re.sub(post_code_newlines_patt, r"\1\n\n", string)
 
-        inter_output_filtered = re.sub(
+        return re.sub(
             inter_output_newlines_patt, r"\1\n\3", post_code_filtered
         )
-
-        return inter_output_filtered
 
 
 class NotebookHandler(PatternMatchingEventHandler):
@@ -173,10 +171,7 @@ class NotebookHandler(PatternMatchingEventHandler):
         super().__init__()
 
     def process(self, event):
-        if (
-            "untitled" not in event.src_path.lower()
-            and ".~" not in event.src_path
-        ):
+        if "untitled" not in event.src_path.lower() and ".~" not in event.src_path:
             render_notebooks(self.context, reload_config=True)
 
     def on_modified(self, event):

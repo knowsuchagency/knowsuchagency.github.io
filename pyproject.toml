@@ -26,4 +26,5 @@ build-backend = "pdm.pep517.api"
 
 [tool.pdm.scripts]
 
+serve.call = "scripts.tasks:serve"
 render-notebooks.call = "scripts.tasks:render_notebooks"

@@ -1,6 +1,3 @@
-run:
-  echo: true
-
 notebooks:
   a-moment-of-monoids:
     draft: false
