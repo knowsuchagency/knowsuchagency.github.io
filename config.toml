@@ -11,7 +11,7 @@ defaultcontentlanguage = "en"
 paginate = 20
 canonifyurls = true
 
-pygmentsstyle = "monokai"
+pygmentsstyle = "friendly"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
@@ -23,7 +23,7 @@ pygmentscodefencesguesssyntax = true
     keywords = "blog,developer"
     info = "engineering excellence"
     avatarurl = "logo.png"
-    # footercontent = "“Talk is cheap. Show me the code.”"
+    footercontent = "Stephan Fitzpatrick"
 
     dateformat = "January 2, 2006"
 
