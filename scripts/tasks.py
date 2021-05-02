@@ -7,7 +7,7 @@ from pathlib import Path
 
 import nbformat
 import toml
-from invoke import task
+# from invoke import task
 from nbconvert import MarkdownExporter
 from nbconvert.preprocessors import Preprocessor
 from ruamel.yaml import YAML
@@ -16,7 +16,7 @@ from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 
 
-@task(aliases=["up"])
+# @task(aliases=["up"])
 def serve(c, draft=True):
     """Run the hugo server alongside a background thread that will re-render notebooks into markdown posts."""
 
@@ -33,7 +33,7 @@ def serve(c, draft=True):
     c.run("hugo serve" + " -D" if draft else "")
 
 
-@task
+# @task
 def render_notebooks(c, reload_config=False):
     """Render notebooks into respective markdown posts."""
     notebooks_path = Path("knowsuchagency_blog", "notebooks")

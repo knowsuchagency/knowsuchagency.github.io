@@ -230,3 +230,8 @@ resources/_gen
 # vscode
 .vscode/
 tempCodeRunnerFile.python
+
+.history/
+__pypackages__/
+.pdm.toml
+old.pyproject.toml
