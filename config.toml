@@ -20,7 +20,7 @@ pygmentscodefencesguesssyntax = true
 [params]
     author = "knowsuchagency"
     description = "knowsuchagency"
-    keywords = "blog,developer"
+    keywords = "blog,python,consulting,training,business,cloud"
     info = "engineering excellence"
     avatarurl = "logo.png"
     footercontent = "Stephan Fitzpatrick"
@@ -95,3 +95,55 @@ pygmentscodefencesguesssyntax = true
             name = "Book"
             weight = 5
             url = "book/"
+
+[notebooks]
+
+    [notebooks.a-moment-of-monoids]
+    draft = false
+    date = 2019-12-28
+    title = "A Moment of Monoids"
+    description = "You already know monoids"
+    slug = "a-moment-of-monoids"
+    tags = ["python", "functional-programming", "math"]
+    series = ["functional programming"]
+
+    [notebooks.monads-in-python]
+    draft = false
+    date = 2020-01-17
+    title = "Monads for Mortals (in Python)"
+    description = "Implementing the Identity Monad in Python"
+    slug = "monads-for-mortals-in-python"
+    tags = ["python", "functional programming", "math", "testing"]
+    series = ["functional programming"]
+
+    [notebooks.collatz-conjecture]
+    draft = false
+    date = 2017-10-30
+    title = "Collatz Conjecture"
+    description = "Collatz Conjecture in Python"
+    slug = "collatz-conjecture-in-python"
+    tags = ["python", "math", "programming"]
+
+    [notebooks.postmodern-error-handling]
+    draft = false
+    date = 2017-02-24
+    title = "Postmodern Error Handling in Python 3"
+    description = "An exploration of error handling in Python"
+    slug = "postmodern-error-handling"
+    tags = ["python", "error-handling", "programming"]
+
+    [notebooks.illegal-states]
+    draft = false
+    date = 2017-09-20
+    title = "Domain Modeling for Great Good"
+    description = "Making illegal states unrepresentable"
+    slug = "avoiding-illegal-state-through-domain-modeling"
+    tags = ["python", "architecture", "domain modeling", "programming"]
+
+    [notebooks.mbp-sentiment-analysis]
+    draft = false
+    date = 2016-10-28
+    title = "Sentiment Analysis of the new Macbook Pro"
+    description = "What does reddit think of the new macbook pro"
+    slug = "mbp-sentiment-analysis"
+    tags = ["python", "sentiment analysis", "reddit", "programming"]
