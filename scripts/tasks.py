@@ -9,6 +9,8 @@ import subprocess as sp
 import nbformat
 import toml
 
+import sys
+
 # from invoke import task
 from nbconvert import MarkdownExporter
 from nbconvert.preprocessors import Preprocessor
@@ -17,22 +19,24 @@ from traitlets.config import Config
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 
-config = YAML().load(Path("invoke.yaml"))
+config = YAML().load(Path("config.yaml"))
 
 
 # @task(aliases=["up"])
 def serve(draft=True):
     """Run the hugo server alongside a background thread that will re-render notebooks into markdown posts."""
 
-    observer = Observer()
+    if any(flag in sys.argv for flag in ["r", "--notebook-reload"]):
 
-    observer.schedule(NotebookHandler(c), "knowsuchagency_blog/notebooks")
+        observer = Observer()
 
-    observer.schedule(ConfigHandler(c), ".")
+        observer.schedule(NotebookHandler(), "knowsuchagency_blog/notebooks")
 
-    observer.start()
+        observer.schedule(ConfigHandler(), ".")
 
-    atexit.register(functools.partial(observer.join, timeout=0.1))
+        observer.start()
+
+        atexit.register(functools.partial(observer.join, timeout=0.1))
 
     sp.run("hugo serve" + (" -D" if draft else ""), shell=True)
 
@@ -156,9 +160,7 @@ class CustomPreprocessor(Preprocessor):
 
         post_code_filtered = re.sub(post_code_newlines_patt, r"\1\n\n", string)
 
-        return re.sub(
-            inter_output_newlines_patt, r"\1\n\3", post_code_filtered
-        )
+        return re.sub(inter_output_newlines_patt, r"\1\n\3", post_code_filtered)
 
 
 class NotebookHandler(PatternMatchingEventHandler):
@@ -166,13 +168,9 @@ class NotebookHandler(PatternMatchingEventHandler):
 
     patterns = ["*.ipynb"]
 
-    def __init__(self, context):
-        self.context = context
-        super().__init__()
-
     def process(self, event):
         if "untitled" not in event.src_path.lower() and ".~" not in event.src_path:
-            render_notebooks(self.context, reload_config=True)
+            render_notebooks(reload_config=True)
 
     def on_modified(self, event):
         self.process(event)
@@ -186,9 +184,5 @@ class ConfigHandler(PatternMatchingEventHandler):
 
     pattern = ["invoke.yaml"]
 
-    def __init__(self, context):
-        self.context = context
-        super().__init__()
-
     def on_modified(self, event):
-        render_notebooks(self.context, reload_config=True)
+        render_notebooks(reload_config=True)

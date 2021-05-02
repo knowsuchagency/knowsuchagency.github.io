@@ -26,12 +26,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "async-generator"
-sections = ["default"]
-version = "1.10"
-summary = "Async generators and context managers for Python 3.5+"
-
-[[package]]
 name = "attrs"
 sections = ["default"]
 version = "20.3.0"
@@ -288,15 +282,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "jupyterlab-pygments"
-sections = ["default"]
-version = "0.1.2"
-summary = "Pygments theme using JupyterLab CSS variables"
-dependencies = [
-    "pygments<3,>=2.4.1",
-]
-
-[[package]]
 name = "jupyterlab-server"
 sections = ["default"]
 version = "2.5.0"
@@ -344,28 +329,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "nbclient"
-sections = ["default"]
-version = "0.5.3"
-summary = "A client library for executing notebooks. Formerly nbconvert's ExecutePreprocessor."
-dependencies = [
-    "traitlets>=4.2",
-    "jupyter-client>=6.1.5",
-    "nbformat>=5.0",
-    "async-generator",
-    "nest-asyncio",
-]
-
-[[package]]
 name = "nbconvert"
 sections = ["default"]
-version = "6.0.7"
+version = "5.6.1"
 summary = "Converting Jupyter Notebooks"
 dependencies = [
     "mistune<2,>=0.8.1",
     "jinja2>=2.4",
-    "pygments>=2.4.1",
-    "jupyterlab-pygments",
+    "pygments",
     "traitlets>=4.2",
     "jupyter-core",
     "nbformat>=4.4",
@@ -374,7 +345,6 @@ dependencies = [
     "pandocfilters>=1.4.1",
     "testpath",
     "defusedxml",
-    "nbclient<0.6.0,>=0.5.0",
 ]
 
 [[package]]
@@ -680,7 +650,7 @@ summary = "A built-package format for Python"
 
 [metadata]
 lock_version = "2"
-content_hash = "sha256:861ae2377a8c5a83679b3e1b012fdb59dfc5b5f4fea251968a94fd4f9c794ca7"
+content_hash = "sha256:31fad4905920c744b70d72c20ab0b7c655b2aab5560d03306f34319dc84f397a"
 
 [metadata.files]
 "anyio 2.2.0" = [
@@ -710,10 +680,6 @@ content_hash = "sha256:861ae2377a8c5a83679b3e1b012fdb59dfc5b5f4fea251968a94fd4f9
     {file = "argon2_cffi-20.1.0-cp39-cp39-win32.whl", hash = "sha256:e2db6e85c057c16d0bd3b4d2b04f270a7467c147381e8fd73cbbe5bc719832be"},
     {file = "argon2_cffi-20.1.0-cp39-cp39-win_amd64.whl", hash = "sha256:8a84934bd818e14a17943de8099d41160da4a336bcc699bb4c394bbb9b94bd32"},
     {file = "argon2-cffi-20.1.0.tar.gz", hash = "sha256:d8029b2d3e4b4cea770e9e5a0104dd8fa185c1724a0f01528ae4826a6d25f97d"},
-]
-"async-generator 1.10" = [
-    {file = "async_generator-1.10-py3-none-any.whl", hash = "sha256:01c7bf666359b4967d2cda0000cc2e4af16a0ae098cbffcb8472fb9e8ad6585b"},
-    {file = "async_generator-1.10.tar.gz", hash = "sha256:6ebb3d106c12920aaae42ccb6f787ef5eefdcdd166ea3d628fa8476abe712144"},
 ]
 "attrs 20.3.0" = [
     {file = "attrs-20.3.0-py2.py3-none-any.whl", hash = "sha256:31b2eced602aa8423c2aea9c76a724617ed67cf9513173fd3a4f03e3a929c7e6"},
@@ -854,10 +820,6 @@ content_hash = "sha256:861ae2377a8c5a83679b3e1b012fdb59dfc5b5f4fea251968a94fd4f9
     {file = "jupyterlab-3.0.14-py3-none-any.whl", hash = "sha256:223ad786032119f495edc894a81925b6cc327a184f150adbc4e5ef94965d4921"},
     {file = "jupyterlab-3.0.14.tar.gz", hash = "sha256:713a84991dfcca8c0bc260911f1bd54ac25a386a86285713b9555a60f795059b"},
 ]
-"jupyterlab-pygments 0.1.2" = [
-    {file = "jupyterlab_pygments-0.1.2-py2.py3-none-any.whl", hash = "sha256:abfb880fd1561987efaefcb2d2ac75145d2a5d0139b1876d5be806e32f630008"},
-    {file = "jupyterlab_pygments-0.1.2.tar.gz", hash = "sha256:cfcda0873626150932f438eccf0f8bf22bfa92345b814890ab360d666b254146"},
-]
 "jupyterlab-server 2.5.0" = [
     {file = "jupyterlab_server-2.5.0-py3-none-any.whl", hash = "sha256:c29784df3269d45f54a1e23e041ae9e8638773fa6b11095938b4d30bec1c75c6"},
     {file = "jupyterlab_server-2.5.0.tar.gz", hash = "sha256:4c2c482cc91b7439ea5415f8f85ded95059fb9cdab03f5f0e6338246830c2a5c"},
@@ -928,13 +890,9 @@ content_hash = "sha256:861ae2377a8c5a83679b3e1b012fdb59dfc5b5f4fea251968a94fd4f9
     {file = "nbclassic-0.2.7-py3-none-any.whl", hash = "sha256:8843cafa3827db05b9e7da909a4955b552de13e20707474844cfdd84bf4bf655"},
     {file = "nbclassic-0.2.7.tar.gz", hash = "sha256:6835b27ffaed1f7a497371bb2c05c0f2b123cbcf7c3c116c1ca808ac78ac2fe8"},
 ]
-"nbclient 0.5.3" = [
-    {file = "nbclient-0.5.3-py3-none-any.whl", hash = "sha256:e79437364a2376892b3f46bedbf9b444e5396cfb1bc366a472c37b48e9551500"},
-    {file = "nbclient-0.5.3.tar.gz", hash = "sha256:db17271330c68c8c88d46d72349e24c147bb6f34ec82d8481a8f025c4d26589c"},
-]
-"nbconvert 6.0.7" = [
-    {file = "nbconvert-6.0.7-py3-none-any.whl", hash = "sha256:39e9f977920b203baea0be67eea59f7b37a761caa542abe80f5897ce3cf6311d"},
-    {file = "nbconvert-6.0.7.tar.gz", hash = "sha256:cbbc13a86dfbd4d1b5dee106539de0795b4db156c894c2c5dc382062bbc29002"},
+"nbconvert 5.6.1" = [
+    {file = "nbconvert-5.6.1-py2.py3-none-any.whl", hash = "sha256:f0d6ec03875f96df45aa13e21fd9b8450c42d7e1830418cccc008c0df725fcee"},
+    {file = "nbconvert-5.6.1.tar.gz", hash = "sha256:21fb48e700b43e82ba0e3142421a659d7739b65568cc832a13976a77be16b523"},
 ]
 "nbformat 5.1.3" = [
     {file = "nbformat-5.1.3-py3-none-any.whl", hash = "sha256:eb8447edd7127d043361bc17f2f5a807626bc8e878c7709a1c647abda28a9171"},
