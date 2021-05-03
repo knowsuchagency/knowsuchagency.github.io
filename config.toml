@@ -92,13 +92,13 @@ pygmentscodefencesguesssyntax = true
     url = "https://www.instagram.com/knowsuchagencycorp/"
 
 
-# [[params.social]]
-#     name = "RSS"
-#     icon = "fa fa-rss"
-#     weight = 6
-#     url = "https://knowsuchagency.com/index.xml"
-#     rel = "alternate"
-#     type = "application/rss+xml"
+[[params.social]]
+    name = "RSS"
+    icon = "fa fa-rss"
+    weight = 6
+    url = "https://knowsuchagency.com/index.xml"
+    rel = "alternate"
+    type = "application/rss+xml"
 
 
 [languages]
