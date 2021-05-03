@@ -31,4 +31,5 @@ serve.call = "scripts.tasks:serve"
 
 render-notebooks.call = "scripts.tasks:render_notebooks"
 
-update-theme = "git submodule foreach --recursive git pull origin master"
+init-theme = "git submodule update --init --recursive"
+update-theme = "git pull --recurse-submodules"
