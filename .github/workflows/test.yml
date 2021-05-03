@@ -16,6 +16,9 @@ jobs:
         name: Setup PDM
         with:
           python-version: 3.8
+
+      - name: Initialize Theme
+        run: pdm run init-theme
       
       - name: Install Dependencies
         run: pdm install
