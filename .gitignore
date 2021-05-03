@@ -235,3 +235,4 @@ tempCodeRunnerFile.python
 __pypackages__/
 .pdm.toml
 old.pyproject.toml
+public/
