@@ -18,20 +18,21 @@ pygmentscodefencesguesssyntax = true
 #disqusShortname = "yourdiscussshortname"
 
 [params]
-    author = "knowsuchagency"
+    author = "knowsuchagency corp"
     description = "knowsuchagency"
     keywords = "blog,python,consulting,training,business,cloud"
     info = "engineering excellence"
-    avatarurl = "logo.png"
+    avatarurl = "images/logo.png"
     footercontent = "Stephan Fitzpatrick"
 
-    favicon_32 = "favicon.png"
-    favicon_16 = "favicon.png"
+    favicon_32 = "images/logoFull.png"
+    # favicon_16 = "favicon.png"
 
     dateformat = "January 2, 2006"
 
     hideCredits = true
-    hideCopyright = true
+    hideCopyright = false
+    since = 2019
 
     # Git Commit in Footer, uncomment the line below to enable it.
     # commit = "https://github.com/luizdepra/hugo-coder/tree/"
@@ -44,14 +45,15 @@ pygmentscodefencesguesssyntax = true
     # "dark" (dark background, light foreground)
     # "light" (light background, dark foreground) (default)
     colorscheme = "light"
-    hideColorSchemeToggle = false
+    hideColorSchemeToggle = true
 
 
     # Series see also post count
     maxSeeAlsoItems = 5
 
     # Custom CSS
-    custom_css = []
+    customCSS = ["css/color.css"]
+    # customSCSS = ["scss/fonts.scss"]
     
     # Custom JS
     custom_js = []
@@ -63,19 +65,27 @@ pygmentscodefencesguesssyntax = true
 
 [[params.social]]
     name = "Github"
-    icon = "fab fa-github"
+    icon = "fa fa-github"
     weight = 1
     url = "https://github.com/knowsuchagency/"
 [[params.social]]
     name = "LinkedIn"
-    icon = "fab fa-linkedin"
+    icon = "fa fa-linkedin"
     weight = 4
     url = "https://www.linkedin.com/in/fitzpatrickstephan/"
 [[params.social]]
     name = "Twitter"
-    icon = "fab fa-twitter"
+    icon = "fa fa-twitter"
     weight = 3
     url = "https://twitter.com/knowsuchagency/"
+
+[[params.social]]
+    name = "RSS"
+    icon = "fa fa-rss"
+    weight = 6
+    url = "https://myhugosite.com/index.xml"
+    rel = "alternate"
+    type = "application/rss+xml"
 
 
 [languages]
