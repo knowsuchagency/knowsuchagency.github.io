@@ -21,8 +21,8 @@
 <meta property="og:description" content="Implementing the Identity Monad in Python" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.knowsuchagency.com/posts/monads-for-mortals-in-python/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-01-17T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-01-17T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2020-01-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-01-17T00:00:00+00:00" />
 <meta property="og:see_also" content="https://www.knowsuchagency.com/posts/a-moment-of-monoids/" />
 
 
@@ -61,7 +61,7 @@
 
     
 
-    <meta name="generator" content="Hugo 0.83.1" />
+    <meta name="generator" content="Hugo 0.86.0" />
   </head>
 
   
@@ -173,7 +173,7 @@
 <hr>
 <p>I wanted to see if I could use property-based testing through <a href="https://github.com/HypothesisWorks/hypothesis/tree/master/hypothesis-python">hypothesis</a> to programmatically verify that my monad implementation was correct.</p>
 <p>After a lot of trial-and-error, the following implementation of the identity monad is what I came up with.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#4070a0">&#34;&#34;&#34;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#4070a0">&#34;&#34;&#34;
 </span><span style="color:#4070a0">A basic implementation of the identity monad in python.
 </span><span style="color:#4070a0">
 </span><span style="color:#4070a0">We use the hypothesis library to test that our monad obeys
@@ -264,24 +264,24 @@ UnaryOrBinaryFunction <span style="color:#666">=</span> Union[UnaryFunction, Bin
         <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020">map</span>(self, function)
 
     <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">apply</span>(self, lifted: <span style="color:#4070a0">&#34;Identity&#34;</span>) <span style="color:#666">-&gt;</span> <span style="color:#4070a0">&#34;Identity&#34;</span>:
-        <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020">apply</span>(self, lifted)
+        <span style="color:#007020;font-weight:bold">return</span> apply(self, lifted)
 
     <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">bind</span>(self, function: Callable[[Scalar], <span style="color:#4070a0">&#34;Identity&#34;</span>]) <span style="color:#666">-&gt;</span> <span style="color:#4070a0">&#34;Identity&#34;</span>:
         <span style="color:#007020;font-weight:bold">return</span> bind(self, function)
 
     <span style="color:#007020;font-weight:bold">def</span> __eq__(self, other: Any):
         <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> <span style="color:#007020">isinstance</span>(other, Identity):
-            <span style="color:#007020;font-weight:bold">return</span> False
+            <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">False</span>
         <span style="color:#007020;font-weight:bold">elif</span> self<span style="color:#666">.</span>value <span style="color:#007020;font-weight:bold">is</span> other<span style="color:#666">.</span>value:
-            <span style="color:#007020;font-weight:bold">return</span> True
+            <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">True</span>
         <span style="color:#007020;font-weight:bold">elif</span> self<span style="color:#666">.</span>value <span style="color:#666">==</span> other<span style="color:#666">.</span>value:
-            <span style="color:#007020;font-weight:bold">return</span> True
-        <span style="color:#007020;font-weight:bold">elif</span> <span style="color:#007020">callable</span>(self<span style="color:#666">.</span>value) <span style="color:#007020;font-weight:bold">and</span> <span style="color:#007020">callable</span>(other<span style="color:#666">.</span>value):
+            <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">True</span>
+        <span style="color:#007020;font-weight:bold">elif</span> callable(self<span style="color:#666">.</span>value) <span style="color:#007020;font-weight:bold">and</span> callable(other<span style="color:#666">.</span>value):
             <span style="color:#60a0b0;font-style:italic"># in the event we need to compare functions,</span>
             <span style="color:#60a0b0;font-style:italic"># we assume both functions accept 0 for simplicity&#39;s sake</span>
             <span style="color:#007020;font-weight:bold">return</span> self<span style="color:#666">.</span>value(<span style="color:#40a070">0</span>) <span style="color:#666">==</span> other<span style="color:#666">.</span>value(<span style="color:#40a070">0</span>)
         <span style="color:#007020;font-weight:bold">else</span>:
-            <span style="color:#007020;font-weight:bold">return</span> False
+            <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">False</span>
 
 
 <span style="color:#60a0b0;font-style:italic"># since monads are applicatives which are in-turn functors, from here on I will be defining functions</span>
@@ -339,7 +339,7 @@ UnaryOrBinaryFunction <span style="color:#666">=</span> Union[UnaryFunction, Bin
 <span style="color:#60a0b0;font-style:italic"># ---- tests ---- #</span>
 
 
-<span style="color:#555;font-weight:bold">@st.composite</span>
+<span style="color:#555;font-weight:bold">@st</span><span style="color:#666">.</span>composite
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">monads</span>(draw):
     <span style="color:#4070a0">&#34;&#34;&#34;Build us some monads, would you?&#34;&#34;&#34;</span>
 
@@ -349,7 +349,7 @@ UnaryOrBinaryFunction <span style="color:#666">=</span> Union[UnaryFunction, Bin
 
     value <span style="color:#666">=</span> draw(st<span style="color:#666">.</span>one_of(scalars, unary_functions))
 
-    value <span style="color:#666">=</span> value <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> <span style="color:#007020">callable</span>(value) <span style="color:#007020;font-weight:bold">else</span> memoize(value)
+    value <span style="color:#666">=</span> value <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> callable(value) <span style="color:#007020;font-weight:bold">else</span> memoize(value)
 
     <span style="color:#007020;font-weight:bold">return</span> Identity(value)
 
@@ -468,7 +468,7 @@ UnaryOrBinaryFunction <span style="color:#666">=</span> Union[UnaryFunction, Bin
 </span><span style="color:#4070a0">    
 </span><span style="color:#4070a0">        pure id &lt;*&gt; v = v
 </span><span style="color:#4070a0">    &#34;&#34;&#34;</span>
-    <span style="color:#007020;font-weight:bold">assert</span> <span style="color:#007020">apply</span>(unit(identity), monad) <span style="color:#666">==</span> monad
+    <span style="color:#007020;font-weight:bold">assert</span> apply(unit(identity), monad) <span style="color:#666">==</span> monad
 
     <span style="color:#007020;font-weight:bold">assert</span> unit(identity)<span style="color:#666">.</span>apply(monad) <span style="color:#666">==</span> monad
 
@@ -479,7 +479,7 @@ UnaryOrBinaryFunction <span style="color:#666">=</span> Union[UnaryFunction, Bin
 </span><span style="color:#4070a0">    &#34;&#34;&#34;</span>
     x <span style="color:#666">=</span> integer
 
-    <span style="color:#007020;font-weight:bold">assert</span> <span style="color:#007020">apply</span>(unit(f), unit(x)) <span style="color:#666">==</span> unit(f(x))
+    <span style="color:#007020;font-weight:bold">assert</span> apply(unit(f), unit(x)) <span style="color:#666">==</span> unit(f(x))
 
     <span style="color:#007020;font-weight:bold">assert</span> unit(f)<span style="color:#666">.</span>apply(unit(x)) <span style="color:#666">==</span> unit(f(x))
 
@@ -490,7 +490,7 @@ UnaryOrBinaryFunction <span style="color:#666">=</span> Union[UnaryFunction, Bin
 </span><span style="color:#4070a0">    &#34;&#34;&#34;</span>
     y <span style="color:#666">=</span> integer
 
-    <span style="color:#007020;font-weight:bold">assert</span> <span style="color:#007020">apply</span>(unit(f), unit(y)) <span style="color:#666">==</span> <span style="color:#007020">apply</span>(unit(<span style="color:#007020;font-weight:bold">lambda</span> g: g(y)), unit(f))
+    <span style="color:#007020;font-weight:bold">assert</span> apply(unit(f), unit(y)) <span style="color:#666">==</span> apply(unit(<span style="color:#007020;font-weight:bold">lambda</span> g: g(y)), unit(f))
 
     <span style="color:#007020;font-weight:bold">assert</span> unit(f)<span style="color:#666">.</span>apply(unit(y)) <span style="color:#666">==</span> unit(<span style="color:#007020;font-weight:bold">lambda</span> g: g(y))<span style="color:#666">.</span>apply(unit(f))
 
@@ -501,7 +501,7 @@ UnaryOrBinaryFunction <span style="color:#666">=</span> Union[UnaryFunction, Bin
 </span><span style="color:#4070a0">    &#34;&#34;&#34;</span>
     u, v, w <span style="color:#666">=</span> unit(u), unit(v), unit(w)
 
-    <span style="color:#007020;font-weight:bold">assert</span> <span style="color:#007020">apply</span>(<span style="color:#007020">apply</span>(<span style="color:#007020">apply</span>(unit(compose), u), v), w) <span style="color:#666">==</span> <span style="color:#007020">apply</span>(u, <span style="color:#007020">apply</span>(v, w))
+    <span style="color:#007020;font-weight:bold">assert</span> apply(apply(apply(unit(compose), u), v), w) <span style="color:#666">==</span> apply(u, apply(v, w))
 
     <span style="color:#007020;font-weight:bold">assert</span> unit(compose)<span style="color:#666">.</span>apply(u)<span style="color:#666">.</span>apply(v)<span style="color:#666">.</span>apply(w) <span style="color:#666">==</span> u<span style="color:#666">.</span>apply(v<span style="color:#666">.</span>apply(w))
 
@@ -522,7 +522,7 @@ UnaryOrBinaryFunction <span style="color:#666">=</span> Union[UnaryFunction, Bin
 </span><span style="color:#4070a0">    Since functions generated by hypothesis aren&#39;t deterministic, this decorator will allow us to make
 </span><span style="color:#4070a0">    them so.
 </span><span style="color:#4070a0">    &#34;&#34;&#34;</span>
-    <span style="color:#007020;font-weight:bold">return</span> lru_cache(maxsize<span style="color:#666">=</span>None)(func)
+    <span style="color:#007020;font-weight:bold">return</span> lru_cache(maxsize<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">None</span>)(func)
 
 
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">identity</span>(x: Any) <span style="color:#666">-&gt;</span> Any:
@@ -551,7 +551,7 @@ UnaryOrBinaryFunction <span style="color:#666">=</span> Union[UnaryFunction, Bin
     test_functor_laws()
     test_monad_laws()
     test_applicative_laws()
-    <span style="color:#007020;font-weight:bold">print</span>(<span style="color:#4070a0">&#34;passed&#34;</span>)
+    <span style="color:#007020">print</span>(<span style="color:#4070a0">&#34;passed&#34;</span>)
 
 
 <span style="color:#007020;font-weight:bold">if</span> __name__ <span style="color:#666">==</span> <span style="color:#4070a0">&#34;__main__&#34;</span>:

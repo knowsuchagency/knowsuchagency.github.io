@@ -21,8 +21,8 @@
 <meta property="og:description" content="Collatz Conjecture in Python" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.knowsuchagency.com/posts/collatz-conjecture-in-python/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2017-10-30T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2017-10-30T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2017-10-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-10-30T00:00:00+00:00" />
 
 
 
@@ -60,7 +60,7 @@
 
     
 
-    <meta name="generator" content="Hugo 0.83.1" />
+    <meta name="generator" content="Hugo 0.86.0" />
   </head>
 
   
@@ -155,8 +155,8 @@
   </a>
 </h2>
 <p>Mathematically, this problem is naturally recursive and this is one way you could implement it as such in Python.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">collatz</span>(n, previous<span style="color:#666">=</span>None):
-    <span style="color:#007020;font-weight:bold">if</span> previous <span style="color:#007020;font-weight:bold">is</span> None:
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">collatz</span>(n, previous<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">None</span>):
+    <span style="color:#007020;font-weight:bold">if</span> previous <span style="color:#007020;font-weight:bold">is</span> <span style="color:#007020;font-weight:bold">None</span>:
         previous <span style="color:#666">=</span> []
     <span style="color:#007020;font-weight:bold">if</span> n <span style="color:#666">==</span> <span style="color:#40a070">1</span>:
         <span style="color:#007020;font-weight:bold">return</span> previous <span style="color:#666">+</span> [n]
@@ -166,7 +166,7 @@
 
 
 <span style="color:#007020;font-weight:bold">for</span> n <span style="color:#007020;font-weight:bold">in</span> <span style="color:#007020">range</span>(<span style="color:#40a070">1</span>, <span style="color:#40a070">10</span>):
-    <span style="color:#007020;font-weight:bold">print</span>(collatz(n))
+    <span style="color:#007020">print</span>(collatz(n))
 </code></pre></div><pre><code>[1]
 [2, 1]
 [3, 10, 5, 16, 8, 4, 2, 1]
@@ -185,9 +185,9 @@
 </h2>
 <p>This shows an example of <a href="https://en.wikipedia.org/wiki/Currying">currying</a>, where you take a function that takes multiple arguments, and break it up into two or more functions where each function acts on only one argument in isolation. In functional languages like F#, variadic functions (those that take multiple arguments) are automatically curried, but this is how we would go about doing it in Python.</p>
 <p>What I like about this is that we no longer have to assign a default value to the <code>previous</code> parameter and check its value on each call to our recursive function (<code>if previous is None</code>) like in your previous recursive example.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">collatz</span>(n):
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">collatz</span>(n):
     <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">get</span>(previous):
-        nonlocal n
+        <span style="color:#007020;font-weight:bold">nonlocal</span> n
         <span style="color:#007020;font-weight:bold">if</span> n <span style="color:#666">==</span> <span style="color:#40a070">1</span>:
             <span style="color:#007020;font-weight:bold">return</span> previous <span style="color:#666">+</span> [n]
         <span style="color:#007020;font-weight:bold">else</span>:
@@ -198,7 +198,7 @@
 
 
 <span style="color:#007020;font-weight:bold">for</span> n <span style="color:#007020;font-weight:bold">in</span> <span style="color:#007020">range</span>(<span style="color:#40a070">1</span>, <span style="color:#40a070">10</span>):
-    <span style="color:#007020;font-weight:bold">print</span>(collatz(n))
+    <span style="color:#007020">print</span>(collatz(n))
 </code></pre></div><pre><code>[1]
 [2, 1]
 [3, 10, 5, 16, 8, 4, 2, 1]
@@ -216,11 +216,11 @@
   </a>
 </h2>
 <p>Another way we can solve this problem is using Python generator functions. This example uses a while loop to evaluate new values.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">functools</span> <span style="color:#007020;font-weight:bold">import</span> partial
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">functools</span> <span style="color:#007020;font-weight:bold">import</span> partial
 
 <span style="color:#60a0b0;font-style:italic"># this decorator will turn a generator function to one that returns a list</span>
 listify <span style="color:#666">=</span> partial(<span style="color:#007020;font-weight:bold">lambda</span> generator: <span style="color:#007020;font-weight:bold">lambda</span> arg: <span style="color:#007020">list</span>(generator(arg)))
-</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#555;font-weight:bold">@listify</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#555;font-weight:bold">@listify</span>
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">collatz</span>(n):
     <span style="color:#007020;font-weight:bold">while</span> n <span style="color:#666">!=</span> <span style="color:#40a070">1</span>:
         <span style="color:#007020;font-weight:bold">yield</span> n
@@ -233,7 +233,7 @@ listify <span style="color:#666">=</span> partial(<span style="color:#007020;fon
 
 
 <span style="color:#007020;font-weight:bold">for</span> n <span style="color:#007020;font-weight:bold">in</span> <span style="color:#007020">range</span>(<span style="color:#40a070">1</span>, <span style="color:#40a070">10</span>):
-    <span style="color:#007020;font-weight:bold">print</span>(collatz(n))
+    <span style="color:#007020">print</span>(collatz(n))
 </code></pre></div><pre><code>[1]
 [2, 1]
 [3, 10, 5, 16, 8, 4, 2, 1]
@@ -251,7 +251,7 @@ listify <span style="color:#666">=</span> partial(<span style="color:#007020;fon
   </a>
 </h2>
 <p>Finally, this solution (my favorite) uses lazy evaluation and recursion to <code>yield from</code> itself until the base condition is met, that <code>n == 1</code>.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#555;font-weight:bold">@listify</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#555;font-weight:bold">@listify</span>
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">collatz</span>(n):
     <span style="color:#007020;font-weight:bold">yield</span> n
     
@@ -260,11 +260,11 @@ listify <span style="color:#666">=</span> partial(<span style="color:#007020;fon
     
     next_number <span style="color:#666">=</span> n<span style="color:#666">//</span><span style="color:#40a070">2</span> <span style="color:#007020;font-weight:bold">if</span> n <span style="color:#666">%</span> <span style="color:#40a070">2</span> <span style="color:#666">==</span> <span style="color:#40a070">0</span> <span style="color:#007020;font-weight:bold">else</span> n<span style="color:#666">*</span><span style="color:#40a070">3</span> <span style="color:#666">+</span> <span style="color:#40a070">1</span>
     
-    <span style="color:#007020;font-weight:bold">yield</span> <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">collatz</span>(next_number) 
+    <span style="color:#007020;font-weight:bold">yield from</span> collatz(next_number) 
         
 
 <span style="color:#007020;font-weight:bold">for</span> n <span style="color:#007020;font-weight:bold">in</span> <span style="color:#007020">range</span>(<span style="color:#40a070">1</span>, <span style="color:#40a070">10</span>):
-    <span style="color:#007020;font-weight:bold">print</span>(collatz(n))
+    <span style="color:#007020">print</span>(collatz(n))
 </code></pre></div><pre><code>[1]
 [2, 1]
 [3, 10, 5, 16, 8, 4, 2, 1]

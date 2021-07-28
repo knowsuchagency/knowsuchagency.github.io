@@ -2,13 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.knowsuchagency.com/</loc>
+    <lastmod>2021-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.knowsuchagency.com/posts/</loc>
+    <lastmod>2021-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.knowsuchagency.com/tags/python/</loc>
+    <lastmod>2021-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.knowsuchagency.com/posts/python-decorators/</loc>
+    <lastmod>2021-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.knowsuchagency.com/tags/</loc>
+    <lastmod>2021-07-27T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.knowsuchagency.com/series/functional-programming/</loc>
     <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.knowsuchagency.com/tags/functional-programming/</loc>
-    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.knowsuchagency.com/</loc>
     <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.knowsuchagency.com/tags/math/</loc>
@@ -17,16 +29,7 @@
     <loc>https://www.knowsuchagency.com/posts/monads-for-mortals-in-python/</loc>
     <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.knowsuchagency.com/posts/</loc>
-    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.knowsuchagency.com/tags/python/</loc>
-    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.knowsuchagency.com/series/</loc>
-    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.knowsuchagency.com/tags/</loc>
     <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.knowsuchagency.com/tags/testing/</loc>

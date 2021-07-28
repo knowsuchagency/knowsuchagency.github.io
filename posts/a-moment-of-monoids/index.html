@@ -21,8 +21,8 @@
 <meta property="og:description" content="You already know monoids" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.knowsuchagency.com/posts/a-moment-of-monoids/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-12-28T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2019-12-28T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2019-12-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-28T00:00:00+00:00" />
 <meta property="og:see_also" content="https://www.knowsuchagency.com/posts/monads-for-mortals-in-python/" />
 
 
@@ -61,7 +61,7 @@
 
     
 
-    <meta name="generator" content="Hugo 0.83.1" />
+    <meta name="generator" content="Hugo 0.86.0" />
   </head>
 
   
@@ -171,7 +171,7 @@
 <p>Binary operation simply means a function that acts on two separate objects.</p>
 <p>Since we know addition over numbers to be associative i.e. <code>a + (b + c) = (a + b) + c</code>, this means the set of numbers under addition is a semigroup.</p>
 <p>Let&rsquo;s look at some concrete examples in python.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">functools</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">functools</span>
 <span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">operator</span>
 
 <span style="color:#60a0b0;font-style:italic"># A semigroup is a nonempty set G...</span>
@@ -219,7 +219,7 @@ following properties:
 that contained per-customer order totals for a given month.</p>
 <p>We want to add up all the money each customer spent
 to figure out the total spent that month.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">csv</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">csv</span>
 <span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">io</span>
 
 january_order_totals <span style="color:#666">=</span> <span style="color:#4070a0">&#34;&#34;&#34;
@@ -233,7 +233,7 @@ reader <span style="color:#666">=</span> csv<span style="color:#666">.</span>Dic
 
 cash_spent_per_customer <span style="color:#666">=</span> [row[<span style="color:#4070a0">&#34;order_total&#34;</span>] <span style="color:#007020;font-weight:bold">for</span> row <span style="color:#007020;font-weight:bold">in</span> reader]
 
-<span style="color:#007020;font-weight:bold">print</span>(cash_spent_per_customer)
+<span style="color:#007020">print</span>(cash_spent_per_customer)
 </code></pre></div><pre><code>['54.71', '', '72.11']
 </code></pre>
 <p>We have a minor problem in that we have an empty value &ndash; john didn&rsquo;t spend
@@ -243,12 +243,12 @@ any money in January.</p>
 <p>For example, for the set of numbers under addition, the identity is <code>0</code> because for any number <code>x</code>, <code>x + 0 = x</code>.</p>
 <p>The same is true for <code>1</code> for numbers under multiplication i.e. <code>x * 1 = x</code> for any number <code>x</code>.</p>
 <p>For the set of strings under the concatenation operation, the identity is simply an empty string.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3">string <span style="color:#666">=</span> <span style="color:#4070a0">&#34;hello, world&#34;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3">string <span style="color:#666">=</span> <span style="color:#4070a0">&#34;hello, world&#34;</span>
 
 identity <span style="color:#666">=</span> <span style="color:#4070a0">&#34;&#34;</span>
 
 string <span style="color:#666">+</span> identity <span style="color:#666">==</span> string
-</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># cash_spent_per_customer is currently a collection of strings</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># cash_spent_per_customer is currently a collection of strings</span>
 
 <span style="color:#60a0b0;font-style:italic"># this comprehension attempts to convert each string to a floating point number UNLESS it is an empty string, in which case it evaluates to 0, the identity for numbers under addition</span>
 
@@ -258,7 +258,7 @@ cash_spent_per_customer <span style="color:#666">=</span> [
 
 total <span style="color:#666">=</span> <span style="color:#007020">sum</span>(cash_spent_per_customer)
 
-<span style="color:#007020;font-weight:bold">print</span>(f<span style="color:#4070a0">&#34;The total spent in january was: {total}&#34;</span>)
+<span style="color:#007020">print</span>(<span style="color:#4070a0">f</span><span style="color:#4070a0">&#34;The total spent in january was: </span><span style="color:#70a0d0;font-style:italic">{</span>total<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>)
 </code></pre></div><pre><code>The total spent in january was: 126.82
 </code></pre>
 <p>We solved our data validation error by creating a monoid.</p>
