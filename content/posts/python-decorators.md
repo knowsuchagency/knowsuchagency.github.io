@@ -133,7 +133,7 @@ greet(Batman) == Hello, Batman.
 ------------------------------------------------------------
 ```
 
-## Decorators with arguments.
+## Decorators with arguments
 
 What if we want to alter the behavior of our decorators?
 
@@ -185,7 +185,7 @@ WE'RE CALLING PLUS_TWO WITH (ARGS = (0,), KWARGS = {}).
 
 ## Bonus
 
-### Retaining function metadata.
+### Retaining function metadata
 
 Since we're writing functions that return functions, the original metadata we may have wanted or needed could be lost.
 
@@ -242,7 +242,7 @@ The function being decorated is named greet.
 greet.__name__ = 'greet' greet.__doc__ = 'Say hello.'
 ```
 
-### Avoiding outer parentheses.
+### Avoiding outer parentheses
 
 If we want to avoid *having* to use outer parenthesis when writing decorators with arguments, we can do so by adding an initial argument to our factory and adjusting what's returned.
 
