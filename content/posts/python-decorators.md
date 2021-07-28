@@ -30,7 +30,7 @@ def foo():
 foo = some_decorator(foo)
 ```
 
-Decorators are often used in frameworks like [Flask](flask) and [FastAPI](fastapi) to create productive high-level abstractions.
+Decorators are often used in frameworks like [Flask][flask] and [FastAPI][fastapi] to create productive high-level abstractions.
 
 Learning to write them can seem overwhelming at first, but once you grok the concept, writing decorators will become natural.
 
