@@ -30,7 +30,7 @@ def foo():
 foo = some_decorator(foo)
 ```
 
-Decorators are often used in frameworks like Flask and FastAPI to create productive high-level abstractions.
+Decorators are often used in frameworks like [Flask](flask) and [FastAPI](fastapi) to create productive high-level abstractions.
 
 Learning to write them can seem overwhelming at first, but once you grok the concept, writing decorators will become natural.
 
@@ -289,3 +289,6 @@ Hello, Stephan.
 WE'RE CALLING PLUS_TWO WITH (ARGS = (0,), KWARGS = {}).
 2
 ```
+
+[flask]: https://flask.palletsprojects.com/en/2.0.x/quickstart/
+[fastapi]: https://fastapi.tiangolo.com/tutorial/first-steps/
