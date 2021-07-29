@@ -156,7 +156,7 @@ def print_name(excitedly=False):
     return decorator
 
 
-@print_name()
+@print_name() # notice the parenthesis here
 def greet(name):
     return f"Hello, {name}."
 
@@ -214,7 +214,7 @@ The function being decorated is named greet.
 greet.__name__ = 'closure' greet.__doc__ = None
 ```
 
-We fix this by using another decorator from the standard library, `functools.wraps`.
+We can fix this by using another decorator from the standard library, `functools.wraps`.
 
 ```python
 import functools
@@ -241,6 +241,8 @@ print(f"{greet.__name__ = } {greet.__doc__ = }")
 The function being decorated is named greet.
 greet.__name__ = 'greet' greet.__doc__ = 'Say hello.'
 ```
+
+For an even more robust implementation of `functools.wraps` see [wrapt][wrapt].
 
 ### Avoiding outer parentheses
 
@@ -292,3 +294,4 @@ WE'RE CALLING PLUS_TWO WITH (ARGS = (0,), KWARGS = {}).
 
 [flask]: https://flask.palletsprojects.com/en/2.0.x/quickstart/
 [fastapi]: https://fastapi.tiangolo.com/tutorial/first-steps/
+[wrapt]: https://wrapt.readthedocs.io/en/latest/
