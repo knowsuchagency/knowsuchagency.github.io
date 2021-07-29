@@ -54,7 +54,7 @@ pygmentscodefencesguesssyntax = true
     # Custom CSS
     customCSS = ["css/color.css"]
     # customSCSS = ["scss/fonts.scss"]
-    
+
     # Custom JS
     custom_js = []
 
@@ -89,7 +89,7 @@ pygmentscodefencesguesssyntax = true
     name = "Instagram"
     icon = "fa fa-instagram"
     weight = 2
-    url = "https://www.instagram.com/knowsuchagencycorp/"
+    url = "https://www.instagram.com/knowsuchagency/"
 
 
 [[params.social]]
