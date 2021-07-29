@@ -11,7 +11,7 @@ externalLink = ""
 <!--more-->
 ## Definitions
 
-Decorators are a **"syntactic sugar"** for **a function that takes another function as an argument**.
+Decorators are a **"syntactic sugar"** for a **function that takes another function as an argument**.
 
 *Usually* the thing returned is another function, but it technically doesn't have to be. 
 
