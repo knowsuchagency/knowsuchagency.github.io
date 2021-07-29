@@ -15,7 +15,7 @@ Decorators are a **"syntactic sugar"** for a **function that takes another funct
 
 *Usually* the thing returned is another function, but it technically doesn't have to be. 
 
-Functions that take functions as arguments and return other functions are referred to as **higher-order functions**.
+Functions that take functions as arguments and return functions are referred to as **higher-order functions**.
 
 ```python
 @some_decorator
